@@ -1,102 +1,189 @@
-import Image from "next/image";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import {
+  Code2,
+  Palette,
+  Shield,
+  Zap,
+  Globe,
+  CheckCircle2,
+  GitBranch,
+  TestTube2,
+  FileCode2,
+  Sparkles,
+} from "lucide-react";
 
-export default function Home() {
+const features = [
+  {
+    icon: Code2,
+    title: "TypeScript First",
+    description:
+      "Strict type checking with TypeScript 5 for robust, maintainable code.",
+  },
+  {
+    icon: Zap,
+    title: "Next.js 15 App Router",
+    description:
+      "Latest Next.js with Server Components and streaming for optimal performance.",
+  },
+  {
+    icon: Palette,
+    title: "Tailwind CSS 4",
+    description:
+      "Utility-first CSS with custom theme and dark mode support out of the box.",
+  },
+  {
+    icon: Shield,
+    title: "Type-Safe Environment",
+    description: "Runtime validation with T3 Env and Zod for bulletproof configs.",
+  },
+  {
+    icon: Globe,
+    title: "Internationalization",
+    description:
+      "Built-in i18n with next-intl and Crowdin integration for global reach.",
+  },
+  {
+    icon: GitBranch,
+    title: "Git Workflow",
+    description:
+      "Lefthook, Commitlint, and Commitizen for standardized commits and hooks.",
+  },
+  {
+    icon: TestTube2,
+    title: "Storybook Integration",
+    description:
+      "Isolated component development with comprehensive testing and documentation.",
+  },
+  {
+    icon: FileCode2,
+    title: "Code Quality",
+    description:
+      "ESLint, Prettier, and Knip configured for clean, optimized codebases.",
+  },
+  {
+    icon: CheckCircle2,
+    title: "Form Handling",
+    description:
+      "React Hook Form with Zod validation for type-safe, performant forms.",
+  },
+  {
+    icon: Sparkles,
+    title: "Developer Experience",
+    description:
+      "VSCode configs, auto-formatting, and hot reload for seamless development.",
+  },
+];
+
+export default function HomePage() {
   return (
-    <div className="grid min-h-screen grid-rows-[20px_1fr_20px] items-center justify-items-center gap-16 p-8 pb-20 font-sans sm:p-20">
-      <main className="row-start-2 flex flex-col items-center gap-[32px] sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-center font-mono text-sm/6 sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="rounded bg-black/[.05] px-1 py-0.5 font-mono font-semibold dark:bg-white/[.06]">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="relative min-h-screen overflow-hidden bg-background">
+      {/* Grid Pattern Background */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
 
-        <div className="flex flex-col items-center gap-4 sm:flex-row">
-          <a
-            className="bg-foreground text-background flex h-10 items-center justify-center gap-2 rounded-full border border-solid border-transparent px-4 text-sm font-medium transition-colors hover:bg-[#383838] sm:h-12 sm:w-auto sm:px-5 sm:text-base dark:hover:bg-[#ccc]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="flex h-10 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-4 text-sm font-medium transition-colors hover:border-transparent hover:bg-[#f2f2f2] sm:h-12 sm:w-auto sm:px-5 sm:text-base md:w-[158px] dark:border-white/[.145] dark:hover:bg-[#1a1a1a]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      {/* Gradient Orbs */}
+      <div className="absolute left-1/2 top-0 -z-10 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-gradient-to-br from-primary/20 via-primary/5 to-transparent blur-3xl" />
+      <div className="absolute right-0 top-1/3 -z-10 h-[400px] w-[400px] rounded-full bg-gradient-to-br from-accent/20 via-accent/5 to-transparent blur-3xl" />
+
+      {/* Main Content */}
+      <div className="relative mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
+        {/* Hero Section */}
+        <div className="mx-auto max-w-3xl text-center">
+          <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-border bg-muted/50 px-4 py-1.5 text-sm">
+            <Sparkles className="h-4 w-4 text-primary" />
+            <span className="text-muted-foreground">Version 0.2.0</span>
+          </div>
+
+          <h1 className="bg-gradient-to-br from-foreground to-foreground/60 bg-clip-text text-5xl font-bold tracking-tight text-transparent sm:text-7xl">
+            Next.js Boilerplate
+          </h1>
+
+          <p className="mt-6 text-lg leading-8 text-muted-foreground sm:text-xl">
+            A production-ready, enterprise-grade Next.js starter with
+            TypeScript, Tailwind CSS, and comprehensive developer tooling.
+            Ship faster with confidence.
+          </p>
+
+          <div className="mt-10 flex items-center justify-center gap-4">
+            <Button size="lg" asChild>
+              <Link href="/docs">Get Started</Link>
+            </Button>
+            <Button size="lg" variant="outline" asChild>
+              <Link
+                href="https://github.com/yourusername/boilerplate"
+                target="_blank"
+              >
+                View on GitHub
+              </Link>
+            </Button>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex flex-wrap items-center justify-center gap-[24px]">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+
+        {/* Features Grid */}
+        <div className="mx-auto mt-32 max-w-6xl">
+          <div className="mb-16 text-center">
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+              Everything you need to build fast
+            </h2>
+            <p className="mt-4 text-lg text-muted-foreground">
+              Carefully crafted with best practices and modern tooling
+            </p>
+          </div>
+
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {features.map((feature) => (
+              <div
+                key={feature.title}
+                className="group relative overflow-hidden rounded-2xl border border-border bg-card p-6 transition-all hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5"
+              >
+                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary transition-colors group-hover:bg-primary/20">
+                  <feature.icon className="h-6 w-6" />
+                </div>
+
+                <h3 className="mb-2 text-lg font-semibold">
+                  {feature.title}
+                </h3>
+
+                <p className="text-sm text-muted-foreground">
+                  {feature.description}
+                </p>
+
+                {/* Hover Gradient */}
+                <div className="absolute inset-0 -z-10 bg-gradient-to-br from-primary/5 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* CTA Section */}
+        <div className="mx-auto mt-32 max-w-3xl text-center">
+          <div className="rounded-3xl border border-border bg-card p-12 shadow-xl">
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+              Ready to build?
+            </h2>
+            <p className="mt-4 text-lg text-muted-foreground">
+              Clone the repository and start building your next project with
+              confidence.
+            </p>
+            <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+              <Button size="lg" asChild>
+                <Link href="/docs">Read Documentation</Link>
+              </Button>
+              <Button size="lg" variant="ghost" asChild>
+                <Link href="/storybook">View Components</Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Footer */}
+      <footer className="relative mt-32 border-t border-border">
+        <div className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
+          <p className="text-center text-sm text-muted-foreground">
+            Built with ❤️ using Next.js, TypeScript, and Tailwind CSS
+          </p>
+        </div>
       </footer>
     </div>
   );

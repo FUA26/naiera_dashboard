@@ -39,9 +39,10 @@ const eslintConfig = [
       "*.config.js",
       "*.config.mjs",
       "*.config.ts",
+      "storybook-static/**",
     ],
   },
-  ...storybook.configs["flat/recommended"]
+  ...storybook.configs["flat/recommended"],
 ];
 
 export default eslintConfig;
