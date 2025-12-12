@@ -6,7 +6,10 @@
     "**/*.config.{js,ts,mjs}",
     "**/*.d.ts",
     ".next/**",
-    "node_modules/**"
+    "node_modules/**",
+    ".storybook/**",
+    "stories/**",
+    "**/*.stories.{ts,tsx}"
   ],
   "ignoreDependencies": [
     "@types/*",

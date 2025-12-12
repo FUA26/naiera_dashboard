@@ -42,12 +42,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `knip` - Detect unused files and dependencies
 - `commit` - Interactive commit with Commitizen
 
+## [0.2.0] - 2025-12-12
+
+### Added
+
+#### UI Development Environment
+
+- ✅ Verified Tailwind CSS 4 configuration (PostCSS, custom theme, dark mode)
+- ✅ Installed and configured Storybook 10.1.7 with Next.js + Vite
+- ✅ Integrated Tailwind CSS into Storybook preview
+- ✅ Created Button component (`components/ui/button.tsx`) with CVA variants
+- ✅ Created comprehensive Button stories with all variants and sizes
+- ✅ Added Storybook addons: a11y, docs, vitest, chromatic, onboarding
+
+### Scripts Added
+
+- `storybook` - Start Storybook dev server on port 6006
+- `build-storybook` - Build static Storybook site
+
+### Configuration Files Added
+
+- `.storybook/main.ts` - Storybook configuration
+- `.storybook/preview.ts` - Global preview settings
+- `components/ui/button.tsx` - Button component
+- `components/ui/button.stories.tsx` - Button stories
+
 ## [Unreleased]
-
-### Planned for v0.2.0 - UI Development Environment
-
-- Verify Tailwind CSS 4 configuration
-- Setup Storybook for component development
 
 ### Planned for v0.3.0 - Core Architecture & Type Safety
 
