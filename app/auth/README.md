@@ -60,6 +60,52 @@ A comprehensive registration page with:
   - Responsive design
   - Accessible form controls
 
+### Forgot Password (`/auth/forgot-password`)
+
+A password recovery page with:
+
+- **Email Submission**
+  - Email input with validation
+  - Clear instructions for users
+
+- **Success State**
+  - Confirmation message after submission
+  - Email address display
+  - Helpful troubleshooting tips
+  - Option to try another email
+
+- **UI/UX Features**
+  - Two-state UI (form → success)
+  - Back to login link
+  - Loading states
+  - Responsive design
+  - Support link
+
+### Reset Password (`/auth/reset-password`)
+
+A secure password reset page with:
+
+- **Token Validation**
+  - URL parameter token check
+  - Invalid token handling
+  - Expired link messaging
+
+- **Password Reset Form**
+  - New password input with show/hide toggle
+  - Confirm password with validation
+  - Password strength indicator (same as register)
+
+- **Success State**
+  - Confirmation message
+  - Redirect to login option
+
+- **UI/UX Features**
+  - Real-time password validation
+  - Password match validation
+  - Loading states
+  - Responsive design
+  - Clear error messaging
+
 ## Components Used
 
 - `Button` - Primary action buttons
@@ -101,6 +147,19 @@ Navigate to the pages:
 
 - Login: `http://localhost:3000/auth/login`
 - Register: `http://localhost:3000/auth/register`
+- Forgot Password: `http://localhost:3000/auth/forgot-password`
+- Reset Password: `http://localhost:3000/auth/reset-password?token=YOUR_TOKEN`
+
+## Password Reset Flow
+
+1. User clicks "Forgot password?" on login page
+2. Redirects to `/auth/forgot-password`
+3. User enters email and submits
+4. Success message displayed with instructions
+5. User receives email with reset link (simulated)
+6. Link contains token: `/auth/reset-password?token=abc123`
+7. User enters new password
+8. Success message with redirect to login
 
 ## Notes
 
