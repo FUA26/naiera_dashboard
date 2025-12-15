@@ -67,12 +67,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `components/ui/button.tsx` - Button component
 - `components/ui/button.stories.tsx` - Button stories
 
+## [0.3.0] - 2025-12-15
+
+### Added
+
+#### Core Architecture & Type Safety
+
+- ✅ Integrated T3 Env (`@t3-oss/env-nextjs`) for type-safe environment variables
+- ✅ Added Zod for runtime environment variable validation
+- ✅ Created `env.ts` with comprehensive environment schema
+- ✅ Configured build-time validation (app refuses to build with invalid env vars)
+- ✅ Updated `.env.example` with detailed documentation
+- ✅ Implemented typed environment variable usage in `app/layout.tsx`
+
+### Configuration Files Added
+
+- `env.ts` - Type-safe environment variable schema and validation
+- `.env` - Local environment variables (gitignored)
+
+### Changed
+
+- Updated `next.config.ts` to import and validate environment variables
+- Updated `app/layout.tsx` to use typed environment variables
+- Enhanced `.env.example` with validation requirements and examples
+
 ## [Unreleased]
-
-### Planned for v0.3.0 - Core Architecture & Type Safety
-
-- Implement T3 Env for type-safe environment variables
-- Setup i18n with next-intl and Crowdin integration
 
 ### Planned for v0.4.0 - Features & Optimization
 

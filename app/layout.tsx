@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import { env } from "@/env";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,9 +15,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Next.js Boilerplate - Enterprise Ready Starter",
+  title: `${env.NEXT_PUBLIC_APP_NAME} - Enterprise Ready Starter`,
   description:
     "A production-ready Next.js boilerplate with TypeScript, Tailwind CSS, Storybook, and comprehensive developer tooling.",
+  metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
 };
 
 export default function RootLayout({
