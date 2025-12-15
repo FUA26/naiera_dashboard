@@ -1,0 +1,70 @@
+{
+  "HomePage": {
+    "title": "Next.js Boilerplate",
+    "subtitle": "A production-ready, enterprise-grade Next.js starter with TypeScript, Tailwind CSS, and comprehensive developer tooling. Ship faster with confidence.",
+    "getStarted": "Get Started",
+    "viewOnGitHub": "View on GitHub",
+    "version": "Version {version}",
+    "newVersionReleased": "New version released",
+    "releaseMessage": "{version} with Storybook integration is now available",
+    "readMore": "Read more"
+  },
+  "Features": {
+    "title": "Everything you need to build fast",
+    "subtitle": "Carefully crafted with best practices and modern tooling",
+    "typeScriptFirst": {
+      "title": "TypeScript First",
+      "description": "Strict type checking with TypeScript 5 for robust, maintainable code."
+    },
+    "nextJs": {
+      "title": "Next.js 15 App Router",
+      "description": "Latest Next.js with Server Components and streaming for optimal performance."
+    },
+    "tailwind": {
+      "title": "Tailwind CSS 4",
+      "description": "Utility-first CSS with custom theme and dark mode support out of the box."
+    },
+    "typeSafe": {
+      "title": "Type-Safe Environment",
+      "description": "Runtime validation with T3 Env and Zod for bulletproof configs."
+    },
+    "i18n": {
+      "title": "Internationalization",
+      "description": "Built-in i18n with next-intl and Crowdin integration for global reach."
+    },
+    "gitWorkflow": {
+      "title": "Git Workflow",
+      "description": "Lefthook, Commitlint, and Commitizen for standardized commits and hooks."
+    },
+    "storybook": {
+      "title": "Storybook Integration",
+      "description": "Isolated component development with comprehensive testing and documentation."
+    },
+    "codeQuality": {
+      "title": "Code Quality",
+      "description": "ESLint, Prettier, and Knip configured for clean, optimized codebases."
+    },
+    "forms": {
+      "title": "Form Handling",
+      "description": "React Hook Form with Zod validation for type-safe, performant forms."
+    },
+    "dx": {
+      "title": "Developer Experience",
+      "description": "VSCode configs, auto-formatting, and hot reload for seamless development."
+    }
+  },
+  "CTA": {
+    "title": "Ready to build?",
+    "description": "Clone the repository and start building your next project with confidence.",
+    "readDocs": "Read Documentation",
+    "viewComponents": "View Components"
+  },
+  "Footer": {
+    "builtWith": "Built with ❤️ using Next.js, TypeScript, and Tailwind CSS"
+  },
+  "Navigation": {
+    "documentation": "Documentation",
+    "components": "Components",
+    "examples": "Examples"
+  }
+}
