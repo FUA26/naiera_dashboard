@@ -7,7 +7,6 @@ import {
   Palette,
   Shield,
   Zap,
-  Globe,
   CheckCircle2,
   GitBranch,
   TestTube2,
@@ -46,12 +45,6 @@ const features = [
     title: "Authentication Pages",
     description:
       "Ready-to-use login and register pages with password strength indicator and social login.",
-  },
-  {
-    icon: Globe,
-    title: "Internationalization",
-    description:
-      "Built-in i18n with next-intl and Crowdin integration for global reach.",
   },
   {
     icon: GitBranch,
@@ -128,6 +121,7 @@ export default function HomePage() {
                 <Link
                   href="https://github.com/yourusername/boilerplate"
                   target="_blank"
+                  rel="noopener noreferrer"
                 >
                   View on GitHub
                 </Link>

@@ -2,7 +2,6 @@ import Link from "next/link";
 import { Code2, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { LanguageSwitcher } from "@/components/language-switcher";
 
 export function Header() {
   return (
@@ -52,8 +51,6 @@ export function Header() {
               <span className="sr-only">GitHub</span>
             </Link>
           </Button>
-
-          <LanguageSwitcher />
 
           <ThemeToggle />
 
