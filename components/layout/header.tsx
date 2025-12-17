@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Code2, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { ThemeToggle } from "@/components/theme-toggle";
+import { ThemeToggle } from "@/components/shared/theme-toggle";
 
 export function Header() {
   return (

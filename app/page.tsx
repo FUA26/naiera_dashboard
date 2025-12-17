@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Banner } from "@/components/banner";
-import { Header } from "@/components/header";
+import { Banner } from "@/components/layout/banner";
+import { Header } from "@/components/layout/header";
 import {
   Code2,
   Palette,
@@ -85,11 +85,11 @@ export default function HomePage() {
       <Header />
       <div className="bg-background relative min-h-screen overflow-hidden">
         {/* Grid Pattern Background */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-size-[24px_24px]" />
 
         {/* Gradient Orbs */}
-        <div className="from-primary/20 via-primary/5 absolute top-0 left-1/2 -z-10 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-gradient-to-br to-transparent blur-3xl" />
-        <div className="from-accent/20 via-accent/5 absolute top-1/3 right-0 -z-10 h-[400px] w-[400px] rounded-full bg-gradient-to-br to-transparent blur-3xl" />
+        <div className="from-primary/20 via-primary/5 absolute top-0 left-1/2 -z-10 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-linear-to-br to-transparent blur-3xl" />
+        <div className="from-accent/20 via-accent/5 absolute top-1/3 right-0 -z-10 h-[400px] w-[400px] rounded-full bg-linear-to-br to-transparent blur-3xl" />
 
         {/* Main Content */}
         <div className="relative mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
@@ -97,10 +97,10 @@ export default function HomePage() {
           <div className="mx-auto max-w-3xl text-center">
             <div className="border-border bg-muted/50 mb-8 inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-sm">
               <Sparkles className="text-primary h-4 w-4" />
-              <span className="text-muted-foreground">Version 0.3.0</span>
+              <span className="text-muted-foreground">Version 0.5.0</span>
             </div>
 
-            <h1 className="from-foreground to-foreground/60 bg-gradient-to-br bg-clip-text text-5xl font-bold tracking-tight text-transparent sm:text-7xl">
+            <h1 className="from-foreground to-foreground/60 bg-linear-to-br bg-clip-text text-5xl font-bold tracking-tight text-transparent sm:text-7xl">
               Next.js Boilerplate
             </h1>
 
@@ -116,6 +116,9 @@ export default function HomePage() {
               </Button>
               <Button size="lg" variant="outline" asChild>
                 <Link href="/auth/login">Sign In</Link>
+              </Button>
+              <Button size="lg" variant="secondary" asChild>
+                <Link href="/dashboard">View Dashboard</Link>
               </Button>
               <Button size="lg" variant="ghost" asChild>
                 <Link
@@ -175,7 +178,7 @@ export default function HomePage() {
                   </p>
 
                   {/* Hover Gradient */}
-                  <div className="from-primary/5 absolute inset-0 -z-10 bg-gradient-to-br to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+                  <div className="from-primary/5 absolute inset-0 -z-10 bg-linear-to-br to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
                 </div>
               ))}
             </div>
