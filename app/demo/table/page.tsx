@@ -10,7 +10,7 @@ interface PageProps {
 
 export default async function TasksPage({ searchParams }: PageProps) {
   // Parse search params using nuqs cache
-  const { page, pageSize, sort, title, status, priority } =
+  const { page, pageSize, sort, title, status, priority, dateFrom, dateTo } =
     await searchParamsCache.parse(searchParams);
 
   // Fetch data from DB
@@ -21,6 +21,8 @@ export default async function TasksPage({ searchParams }: PageProps) {
     title,
     status,
     priority,
+    dateFrom,
+    dateTo,
   });
 
   return (

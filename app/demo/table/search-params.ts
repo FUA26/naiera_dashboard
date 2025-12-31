@@ -11,6 +11,8 @@ export const searchParamsParsers = {
   title: parseAsString.withDefault(""),
   status: parseAsString.withDefault(""),
   priority: parseAsString.withDefault(""),
+  dateFrom: parseAsString.withDefault(""),
+  dateTo: parseAsString.withDefault(""),
 };
 
 export const searchParamsCache = createSearchParamsCache(searchParamsParsers);

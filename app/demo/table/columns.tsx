@@ -2,17 +2,7 @@
 
 import { ColumnDef } from "@tanstack/react-table";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import {
   IconCircle,
   IconLoader,
@@ -21,10 +11,10 @@ import {
   IconArrowDown,
   IconArrowRight,
   IconArrowUp,
-  IconDotsVertical,
 } from "@tabler/icons-react";
 import { Task } from "@/db/schema";
 import { DataTableColumnHeader } from "@/components/data-table";
+import { TaskActions } from "./components/task-actions";
 
 // Status icon mapping
 const statusIcons: Record<Task["status"], React.ReactNode> = {
@@ -176,7 +166,7 @@ export const columns: ColumnDef<Task>[] = [
       const date = row.getValue("createdAt") as Date;
       return (
         <div>
-          {date.toLocaleDateString("en-US", {
+          {date.toLocaleDateString("id-ID", {
             year: "numeric",
             month: "long",
             day: "numeric",
@@ -186,13 +176,31 @@ export const columns: ColumnDef<Task>[] = [
     },
     filterFn: (row, id, value) => {
       if (!value) return true;
+
       const rowDate = row.getValue(id) as Date;
-      const filterDate = new Date(value);
-      return (
-        rowDate.getFullYear() === filterDate.getFullYear() &&
-        rowDate.getMonth() === filterDate.getMonth() &&
-        rowDate.getDate() === filterDate.getDate()
-      );
+      const rowDateTime = new Date(rowDate).setHours(0, 0, 0, 0);
+
+      // Handle filter format with from/to
+      if (typeof value === "object" && "from" in value) {
+        const { from, to } = value;
+        if (from && to) {
+          const fromDate = new Date(from).setHours(0, 0, 0, 0);
+          const toDate = new Date(to).setHours(23, 59, 59, 999);
+          return rowDateTime >= fromDate && rowDateTime <= toDate;
+        }
+        if (from) {
+          const fromDate = new Date(from).setHours(0, 0, 0, 0);
+          return rowDateTime === fromDate;
+        }
+      }
+
+      // Legacy: simple date string
+      if (typeof value === "string") {
+        const filterDate = new Date(value).setHours(0, 0, 0, 0);
+        return rowDateTime === filterDate;
+      }
+
+      return true;
     },
   },
   // Actions column
@@ -201,39 +209,7 @@ export const columns: ColumnDef<Task>[] = [
     header: "",
     cell: ({ row }) => {
       const task = row.original;
-      return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
-              <IconDotsVertical className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(task.id)}
-            >
-              Copy Task ID
-              <DropdownMenuShortcut>⌘C</DropdownMenuShortcut>
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              Edit Task
-              <DropdownMenuShortcut>⌘E</DropdownMenuShortcut>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              View Details
-              <DropdownMenuShortcut>⌘O</DropdownMenuShortcut>
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem className="text-red-600">
-              Delete Task
-              <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      );
+      return <TaskActions task={task} />;
     },
     enableHiding: false,
   },

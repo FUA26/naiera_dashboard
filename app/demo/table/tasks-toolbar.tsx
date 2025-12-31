@@ -5,7 +5,6 @@ import {
   IconSearch,
   IconArrowsSort,
   IconLayoutRows,
-  IconDownload,
   IconX,
   IconCircle,
   IconLoader,
@@ -48,6 +47,7 @@ import {
   FacetedFilterOption,
 } from "@/components/data-table";
 import { Task } from "@/db/schema";
+import { ExportDropdown } from "./components/export-dropdown";
 
 // Status options
 const statusOptions: FacetedFilterOption[] = [
@@ -153,11 +153,10 @@ export function TasksToolbar({
     table.resetSorting();
   };
 
-  const handleExport = () => {
-    const data = table.getFilteredRowModel().rows.map((row) => row.original);
-    console.log("Exporting data:", data);
-    alert(`Exporting ${data.length} rows to CSV...`);
-  };
+  // Get filtered data for export
+  const filteredData = table
+    .getFilteredRowModel()
+    .rows.map((row) => row.original);
 
   return (
     <div className="flex flex-col gap-4">
@@ -336,16 +335,8 @@ export function TasksToolbar({
           {/* View Options */}
           <DataTableViewOptions table={table} />
 
-          {/* Export Button */}
-          <Button
-            variant="outline"
-            size="sm"
-            className="h-8"
-            onClick={handleExport}
-          >
-            <IconDownload className="mr-2 h-4 w-4" />
-            Export
-          </Button>
+          {/* Export Dropdown */}
+          <ExportDropdown data={filteredData} />
         </ButtonGroup>
       </div>
     </div>

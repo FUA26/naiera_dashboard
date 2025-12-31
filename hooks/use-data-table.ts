@@ -2,11 +2,6 @@
 
 import {
   getCoreRowModel,
-  getFacetedRowModel,
-  getFacetedUniqueValues,
-  getFilteredRowModel,
-  getPaginationRowModel,
-  getSortedRowModel,
   useReactTable,
   type ColumnDef,
   type PaginationState,
@@ -53,12 +48,13 @@ export function useDataTable<TData, TValue>({
 
   // Memoize sorting state from URL
   const sorting: SortingState = React.useMemo(() => {
-    if (!urlParams.sort) return [];
-    const [id, desc] = urlParams.sort.split(".");
-    return [{ id, desc: desc === "desc" }];
+    // Use the sort param from URL, which has a default of "createdAt.desc"
+    const sortValue = urlParams.sort || "createdAt.desc";
+    const [id, order] = sortValue.split(".");
+    return [{ id, desc: order === "desc" }];
   }, [urlParams.sort]);
 
-  // Memoize column filters from URL
+  // Memoize column filters from URL (including date filters)
   const columnFilters: ColumnFiltersState = React.useMemo(() => {
     const filters: ColumnFiltersState = [];
     if (urlParams.title) filters.push({ id: "title", value: urlParams.title });
@@ -67,8 +63,24 @@ export function useDataTable<TData, TValue>({
       filters.push({ id: "status", value: urlParams.status.split(".") });
     if (urlParams.priority)
       filters.push({ id: "priority", value: urlParams.priority.split(".") });
+    // Handle date filters
+    if (urlParams.dateFrom || urlParams.dateTo) {
+      filters.push({
+        id: "createdAt",
+        value: {
+          from: urlParams.dateFrom ? new Date(urlParams.dateFrom) : undefined,
+          to: urlParams.dateTo ? new Date(urlParams.dateTo) : undefined,
+        },
+      });
+    }
     return filters;
-  }, [urlParams.title, urlParams.status, urlParams.priority]);
+  }, [
+    urlParams.title,
+    urlParams.status,
+    urlParams.priority,
+    urlParams.dateFrom,
+    urlParams.dateTo,
+  ]);
 
   // Callbacks to update URL
   const onPaginationChange = React.useCallback(
@@ -119,6 +131,22 @@ export function useDataTable<TData, TValue>({
       const priorityFilter = newFilters.find(
         (f: any) => f.id === "priority"
       )?.value;
+      const dateFilter = newFilters.find(
+        (f: any) => f.id === "createdAt"
+      )?.value;
+
+      // Prepare date filter values
+      let dateFrom: string | null = null;
+      let dateTo: string | null = null;
+
+      if (dateFilter && typeof dateFilter === "object") {
+        if (dateFilter.from) {
+          dateFrom = dateFilter.from.toISOString().split("T")[0];
+        }
+        if (dateFilter.to) {
+          dateTo = dateFilter.to.toISOString().split("T")[0];
+        }
+      }
 
       setUrlParams({
         title: (titleFilter as string) || null,
@@ -129,6 +157,8 @@ export function useDataTable<TData, TValue>({
         priority: Array.isArray(priorityFilter)
           ? priorityFilter.join(".")
           : (priorityFilter as string) || null,
+        dateFrom,
+        dateTo,
         page: 1, // Reset page on filter change
       });
     },
@@ -156,12 +186,6 @@ export function useDataTable<TData, TValue>({
     onColumnVisibilityChange: setColumnVisibility,
     onRowSelectionChange: setRowSelection,
     getCoreRowModel: getCoreRowModel(),
-    // We don't need getPaginationRowModel etc because it's manual
-    // But getting faceted values needs data.
-    // Since we only load one page, getFacetedUniqueValues won't show ALL options.
-    // For faceted filters to work efficiently serverside, we usually hardcode options (which we do in toolbar)
-    // or fetch unique values from server.
-    // getFacetedRowModel: getFacetedRowModel(),
   });
 
   return table;

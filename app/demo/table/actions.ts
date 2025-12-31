@@ -2,7 +2,7 @@
 
 import { db } from "@/db";
 import { tasks, type Task } from "@/db/schema";
-import { and, asc, desc, eq, inArray, like, sql } from "drizzle-orm";
+import { and, asc, desc, eq, gte, inArray, like, lte, sql } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 
 export type GetTasksParams = {
@@ -12,6 +12,8 @@ export type GetTasksParams = {
   title?: string;
   status?: string;
   priority?: string;
+  dateFrom?: string;
+  dateTo?: string;
 };
 
 export async function getTasks(params: GetTasksParams) {
@@ -29,6 +31,18 @@ export async function getTasks(params: GetTasksParams) {
   }
   if (params.priority) {
     conditions.push(inArray(tasks.priority, params.priority.split(".")));
+  }
+
+  // Date filter
+  if (params.dateFrom) {
+    const fromDate = new Date(params.dateFrom);
+    fromDate.setHours(0, 0, 0, 0);
+    conditions.push(gte(tasks.createdAt, fromDate));
+  }
+  if (params.dateTo) {
+    const toDate = new Date(params.dateTo);
+    toDate.setHours(23, 59, 59, 999);
+    conditions.push(lte(tasks.createdAt, toDate));
   }
 
   const whereCondition = conditions.length > 0 ? and(...conditions) : undefined;
@@ -52,10 +66,6 @@ export async function getTasks(params: GetTasksParams) {
 
     orderBy = order === "desc" ? desc(sortCol) : asc(sortCol);
   }
-
-  // Transaction for data + count
-  // LibSQL/Drizzle doesn't support transaction return easily for read?
-  // We can just run two queries.
 
   const data = await db
     .select()
@@ -97,4 +107,40 @@ export async function updateTaskStatus({
   await db.update(tasks).set({ status }).where(inArray(tasks.id, ids));
 
   revalidatePath("/demo/table");
+}
+
+export async function deleteTask({ id }: { id: string }) {
+  await db.delete(tasks).where(eq(tasks.id, id));
+}
+
+export async function updateTask({
+  id,
+  title,
+  status,
+  priority,
+  label,
+  estimatedHours,
+}: {
+  id: string;
+  title: string;
+  status: string;
+  priority: string;
+  label: string;
+  estimatedHours: number;
+}) {
+  await db
+    .update(tasks)
+    .set({
+      title,
+      status,
+      priority,
+      label,
+      estimatedHours,
+    })
+    .where(eq(tasks.id, id));
+}
+
+export async function getTaskById({ id }: { id: string }) {
+  const result = await db.select().from(tasks).where(eq(tasks.id, id));
+  return result[0] || null;
 }
