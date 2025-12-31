@@ -33,7 +33,7 @@ function generateTasks(count: number): Task[] {
   const tasks: Task[] = [];
 
   for (let i = 0; i < count; i++) {
-    const taskId = `TASK-${(1000 + i + Math.floor(Math.random() * 9000)).toString()}`;
+    const taskId = `TASK-${(1000 + i).toString()}`;
     const title = taskTitles[i % taskTitles.length];
     const status = statuses[Math.floor(Math.random() * statuses.length)];
     const priority = priorities[Math.floor(Math.random() * priorities.length)];

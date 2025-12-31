@@ -23,7 +23,7 @@ import {
   IconArrowUp,
   IconDotsVertical,
 } from "@tabler/icons-react";
-import { Task } from "./data/schema";
+import { Task } from "@/db/schema";
 import { DataTableColumnHeader } from "@/components/data-table";
 
 // Status icon mapping

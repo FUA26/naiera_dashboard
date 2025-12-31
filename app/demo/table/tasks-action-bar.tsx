@@ -8,6 +8,7 @@ import {
   IconCircleCheck,
   IconCircleX,
 } from "@tabler/icons-react";
+import { useTransition } from "react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -18,7 +19,9 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
-import { Task } from "./data/schema";
+import { Task } from "@/db/schema";
+import { deleteTasks, updateTaskStatus } from "./actions";
+import { toast } from "sonner"; // Assuming sonner is installed, or use basic alert
 
 interface TasksActionBarContentProps {
   selectedRows: Task[];
@@ -29,26 +32,30 @@ export function TasksActionBarContent({
   selectedRows,
   resetSelection,
 }: TasksActionBarContentProps) {
+  const [isPending, startTransition] = useTransition();
+
   const handleDelete = () => {
-    const ids = selectedRows.map((task) => task.id);
-    console.log("Deleting tasks:", ids);
-    alert(
-      `Deleting ${ids.length} task(s): ${ids.slice(0, 3).join(", ")}${ids.length > 3 ? "..." : ""}`
-    );
-    resetSelection();
+    startTransition(async () => {
+      const ids = selectedRows.map((task) => task.id);
+      await deleteTasks({ ids });
+      toast.success("Tasks deleted");
+      resetSelection();
+    });
   };
 
   const handleStatusChange = (status: string) => {
-    const ids = selectedRows.map((task) => task.id);
-    console.log(`Updating ${ids.length} tasks to status: ${status}`);
-    alert(`Updating ${ids.length} task(s) to status: ${status}`);
-    resetSelection();
+    startTransition(async () => {
+      const ids = selectedRows.map((task) => task.id);
+      await updateTaskStatus({ ids, status });
+      toast.success("Tasks updated");
+      resetSelection();
+    });
   };
 
   return (
     <>
       {/* Status update */}
-      <Select onValueChange={handleStatusChange}>
+      <Select onValueChange={handleStatusChange} disabled={isPending}>
         <SelectTrigger className="h-8 w-[140px]">
           <SelectValue placeholder="Update status" />
         </SelectTrigger>
@@ -86,9 +93,10 @@ export function TasksActionBarContent({
         size="sm"
         className="h-8"
         onClick={handleDelete}
+        disabled={isPending}
       >
         <IconTrash className="mr-2 h-4 w-4" />
-        Delete
+        {isPending ? "Deleting..." : "Delete"}
       </Button>
 
       <Separator orientation="vertical" className="h-6" />

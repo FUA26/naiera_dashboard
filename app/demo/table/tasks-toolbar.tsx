@@ -47,7 +47,7 @@ import {
   DensityState,
   FacetedFilterOption,
 } from "@/components/data-table";
-import { Task } from "./data/schema";
+import { Task } from "@/db/schema";
 
 // Status options
 const statusOptions: FacetedFilterOption[] = [

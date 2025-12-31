@@ -3,6 +3,7 @@
 
 export {
   DataTable,
+  DataTableContent,
   type DensityState,
   type DataTableInstance,
 } from "./data-table";

@@ -70,7 +70,6 @@ export function DataTable<TData, TValue>({
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
-  const [density, setDensity] = React.useState<DensityState>(defaultDensity);
 
   const table = useReactTable({
     data,
@@ -94,6 +93,41 @@ export function DataTable<TData, TValue>({
       rowSelection: enableRowSelection ? rowSelection : {},
     },
   });
+
+  return (
+    <DataTableContent
+      table={table}
+      columns={columns}
+      toolbar={toolbar}
+      actionBar={actionBar}
+      enablePagination={enablePagination}
+      defaultDensity={defaultDensity}
+    />
+  );
+}
+
+interface DataTableContentProps<TData, TValue> {
+  table: TanStackTable<TData>;
+  columns: ColumnDef<TData, TValue>[];
+  toolbar?: (
+    table: TanStackTable<TData>,
+    density: DensityState,
+    onDensityChange: (d: DensityState) => void
+  ) => React.ReactNode;
+  actionBar?: (table: TanStackTable<TData>) => React.ReactNode;
+  enablePagination?: boolean;
+  defaultDensity?: DensityState;
+}
+
+export function DataTableContent<TData, TValue>({
+  table,
+  columns,
+  toolbar,
+  actionBar,
+  enablePagination = true,
+  defaultDensity = "medium",
+}: DataTableContentProps<TData, TValue>) {
+  const [density, setDensity] = React.useState<DensityState>(defaultDensity);
 
   return (
     <div className="w-full space-y-4">

@@ -1,18 +1,28 @@
-"use client";
+import { Suspense } from "react";
+import { getTasks } from "./actions";
+import { searchParamsCache } from "./search-params";
+import { TasksTable } from "./tasks-table";
+import { type SearchParams } from "nuqs/server";
 
-import {
-  DataTable,
-  DataTableActionBar,
-  DensityState,
-} from "@/components/data-table";
-import { columns } from "./columns";
-import { tasks } from "./data/tasks";
-import { TasksToolbar } from "./tasks-toolbar";
-import { TasksActionBarContent } from "./tasks-action-bar";
-import { Task } from "./data/schema";
-import { Table } from "@tanstack/react-table";
+interface PageProps {
+  searchParams: Promise<SearchParams>;
+}
 
-export default function TasksPage() {
+export default async function TasksPage({ searchParams }: PageProps) {
+  // Parse search params using nuqs cache
+  const { page, pageSize, sort, title, status, priority } =
+    await searchParamsCache.parse(searchParams);
+
+  // Fetch data from DB
+  const { data, pageCount } = await getTasks({
+    page,
+    pageSize,
+    sort,
+    title,
+    status,
+    priority,
+  });
+
   return (
     <div className="container mx-auto py-10">
       <div className="mb-8">
@@ -21,27 +31,10 @@ export default function TasksPage() {
           Manage your tasks with advanced filtering, sorting, and bulk actions.
         </p>
       </div>
-      <DataTable
-        columns={columns}
-        data={tasks}
-        toolbar={(table, density, onDensityChange) => (
-          <TasksToolbar
-            table={table as Table<Task>}
-            density={density}
-            onDensityChange={onDensityChange}
-          />
-        )}
-        actionBar={(table) => (
-          <DataTableActionBar table={table}>
-            {(selectedRows, resetSelection) => (
-              <TasksActionBarContent
-                selectedRows={selectedRows as Task[]}
-                resetSelection={resetSelection}
-              />
-            )}
-          </DataTableActionBar>
-        )}
-      />
+
+      <Suspense fallback={<div>Loading tasks...</div>}>
+        <TasksTable data={data} pageCount={pageCount} />
+      </Suspense>
     </div>
   );
 }
