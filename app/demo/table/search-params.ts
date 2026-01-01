@@ -11,6 +11,8 @@ export const searchParamsParsers = {
   title: parseAsString.withDefault(""),
   status: parseAsString.withDefault(""),
   priority: parseAsString.withDefault(""),
+  projectId: parseAsString.withDefault(""),
+  assigneeId: parseAsString.withDefault(""),
   dateFrom: parseAsString.withDefault(""),
   dateTo: parseAsString.withDefault(""),
 };

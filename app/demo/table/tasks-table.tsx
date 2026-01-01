@@ -8,18 +8,25 @@ import {
   type DataTableInstance,
 } from "@/components/data-table";
 import { useDataTable } from "@/hooks/use-data-table";
-import { columns } from "./columns";
+import { columns, type TaskWithRelations } from "./columns";
 import { TasksToolbar } from "./tasks-toolbar";
 import { TasksActionBarContent } from "./tasks-action-bar";
-import { type Task } from "@/db/schema";
 import { Table } from "@tanstack/react-table";
+import { Project, User } from "@/db/schema";
 
 interface TasksTableProps {
-  data: Task[];
+  data: TaskWithRelations[];
   pageCount: number;
+  projects: Project[];
+  users: User[];
 }
 
-export function TasksTable({ data, pageCount }: TasksTableProps) {
+export function TasksTable({
+  data,
+  pageCount,
+  projects,
+  users,
+}: TasksTableProps) {
   const table = useDataTable({
     data,
     columns,
@@ -28,20 +35,22 @@ export function TasksTable({ data, pageCount }: TasksTableProps) {
 
   return (
     <DataTableContent
-      table={table as Table<Task>}
+      table={table}
       columns={columns}
       toolbar={(table, density, onDensityChange) => (
         <TasksToolbar
-          table={table as Table<Task>}
+          table={table as any} // Temporary cast until Toolbar is updated
           density={density}
           onDensityChange={onDensityChange}
+          projects={projects}
+          users={users}
         />
       )}
       actionBar={(table) => (
         <DataTableActionBar table={table}>
           {(selectedRows, resetSelection) => (
             <TasksActionBarContent
-              selectedRows={selectedRows as Task[]}
+              selectedRows={selectedRows as TaskWithRelations[]}
               resetSelection={resetSelection}
             />
           )}

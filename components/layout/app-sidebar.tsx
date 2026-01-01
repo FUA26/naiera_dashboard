@@ -2,8 +2,6 @@
 
 import * as React from "react";
 import {
-  BookOpen,
-  Bot,
   Command,
   Frame,
   LifeBuoy,
@@ -11,7 +9,10 @@ import {
   PieChart,
   Send,
   Settings2,
-  SquareTerminal,
+  LayoutDashboard,
+  ListTodo,
+  Users,
+  Briefcase,
 } from "lucide-react";
 
 import {
@@ -21,6 +22,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarRail,
 } from "@/components/ui/sidebar";
 import { NavMain } from "./nav-main";
 import { NavProjects } from "./nav-projects";
@@ -29,64 +31,61 @@ import { NavSecondary } from "./nav-secondary";
 const data = {
   navMain: [
     {
-      title: "Playground",
-      url: "#",
-      icon: SquareTerminal,
+      title: "Dashboard",
+      url: "/dashboard",
+      icon: LayoutDashboard,
       isActive: true,
+    },
+    {
+      title: "Task Management",
+      url: "#",
+      icon: ListTodo,
       items: [
         {
-          title: "History",
-          url: "#",
+          title: "All Tasks",
+          url: "/tasks",
         },
         {
-          title: "Starred",
-          url: "#",
+          title: "My Tasks",
+          url: "/tasks/my",
         },
         {
-          title: "Settings",
-          url: "#",
+          title: "Kanban Board",
+          url: "/tasks/kanban",
         },
       ],
     },
     {
-      title: "Models",
+      title: "Projects",
       url: "#",
-      icon: Bot,
+      icon: Briefcase,
       items: [
         {
-          title: "Genesis",
-          url: "#",
+          title: "All Projects",
+          url: "/projects",
         },
         {
-          title: "Explorer",
-          url: "#",
-        },
-        {
-          title: "Quantum",
-          url: "#",
+          title: "Active Projects",
+          url: "/projects/active",
         },
       ],
     },
     {
-      title: "Documentation",
+      title: "User Management",
       url: "#",
-      icon: BookOpen,
+      icon: Users,
       items: [
         {
-          title: "Introduction",
-          url: "#",
+          title: "Users",
+          url: "/users",
         },
         {
-          title: "Get Started",
-          url: "#",
+          title: "Roles",
+          url: "/roles",
         },
         {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
-          url: "#",
+          title: "Permissions",
+          url: "/permissions",
         },
       ],
     },
@@ -97,19 +96,11 @@ const data = {
       items: [
         {
           title: "General",
-          url: "#",
+          url: "/settings",
         },
         {
-          title: "Team",
-          url: "#",
-        },
-        {
-          title: "Billing",
-          url: "#",
-        },
-        {
-          title: "Limits",
-          url: "#",
+          title: "Security",
+          url: "/settings/security",
         },
       ],
     },
@@ -128,17 +119,17 @@ const data = {
   ],
   projects: [
     {
-      name: "Design Engineering",
+      name: "Website Redesign",
       url: "#",
       icon: Frame,
     },
     {
-      name: "Sales & Marketing",
+      name: "Mobile App Launch",
       url: "#",
       icon: PieChart,
     },
     {
-      name: "Travel",
+      name: "Internal Tools",
       url: "#",
       icon: Map,
     },
@@ -147,17 +138,17 @@ const data = {
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar variant="inset" {...props}>
+    <Sidebar variant="inset" collapsible="icon" {...props}>
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
-              <a href="#">
+              <a href="/dashboard">
                 <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
                   <Command className="size-4" />
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium">Acme Inc</span>
+                  <span className="truncate font-medium">Task Manager</span>
                   <span className="truncate text-xs">Enterprise</span>
                 </div>
               </a>
@@ -170,6 +161,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavProjects projects={data.projects} />
         <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
+      <SidebarRail />
     </Sidebar>
   );
 }

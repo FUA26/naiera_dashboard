@@ -19,12 +19,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
-import { Task } from "@/db/schema";
+import { TaskWithRelations } from "./columns";
 import { deleteTasks, updateTaskStatus } from "./actions";
 import { toast } from "sonner"; // Assuming sonner is installed, or use basic alert
 
 interface TasksActionBarContentProps {
-  selectedRows: Task[];
+  selectedRows: TaskWithRelations[];
   resetSelection: () => void;
 }
 

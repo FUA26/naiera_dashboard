@@ -114,6 +114,7 @@ const ChartTooltipContent = React.forwardRef<
     }
 >(
   (
+    // @ts-ignore
     {
       active,
       payload,

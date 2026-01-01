@@ -26,19 +26,22 @@ import {
   IconFileText,
   IconChartBar,
   IconId,
+  IconBriefcase,
+  IconUser,
 } from "@tabler/icons-react";
-import { Task } from "@/db/schema";
+import { TaskWithRelations } from "../columns";
 import { toast } from "sonner";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 interface ViewTaskSheetProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  task: Task;
+  task: TaskWithRelations;
 }
 
 // Status configuration
 const statusConfig: Record<
-  Task["status"],
+  TaskWithRelations["status"],
   {
     label: string;
     icon: React.ComponentType<{ className?: string }>;
@@ -79,7 +82,7 @@ const statusConfig: Record<
 
 // Priority configuration
 const priorityConfig: Record<
-  Task["priority"],
+  TaskWithRelations["priority"],
   {
     label: string;
     icon: React.ComponentType<{ className?: string }>;
@@ -113,7 +116,7 @@ const priorityConfig: Record<
 
 // Label configuration
 const labelConfig: Record<
-  Task["label"],
+  TaskWithRelations["label"],
   {
     bgColor: string;
     textColor: string;
@@ -254,6 +257,102 @@ export function ViewTaskSheet({
                     {task.estimatedHours}
                   </span>
                   <span className="text-muted-foreground text-sm">jam</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Relations Section (New) */}
+            <div className="bg-card overflow-hidden rounded-xl border">
+              <div className="bg-muted/30 border-b px-4 py-3">
+                <div className="flex items-center gap-2">
+                  <IconBriefcase className="text-muted-foreground h-4 w-4" />
+                  <h3 className="text-sm font-semibold">Terkait</h3>
+                </div>
+              </div>
+              <div className="divide-y">
+                {/* Project */}
+                <div className="flex items-center justify-between px-4 py-3.5">
+                  <div className="flex items-center gap-3">
+                    <div className="bg-muted flex h-8 w-8 items-center justify-center rounded-lg">
+                      <IconBriefcase className="text-muted-foreground h-4 w-4" />
+                    </div>
+                    <span className="text-muted-foreground text-sm">
+                      Project
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    {task.project ? (
+                      <span className="text-sm font-medium">
+                        {task.project.name}
+                      </span>
+                    ) : (
+                      <span className="text-muted-foreground text-xs">-</span>
+                    )}
+                  </div>
+                </div>
+
+                {/* Assignee */}
+                <div className="flex items-center justify-between px-4 py-3.5">
+                  <div className="flex items-center gap-3">
+                    <div className="bg-muted flex h-8 w-8 items-center justify-center rounded-lg">
+                      <IconUser className="text-muted-foreground h-4 w-4" />
+                    </div>
+                    <span className="text-muted-foreground text-sm">
+                      Assignee
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    {task.assignee ? (
+                      <div className="flex items-center gap-2">
+                        <Avatar className="h-6 w-6">
+                          <AvatarImage
+                            src={`https://api.dicebear.com/7.x/initials/svg?seed=${task.assignee.name}`}
+                            alt={task.assignee.name}
+                          />
+                          <AvatarFallback>
+                            {task.assignee.name.charAt(0)}
+                          </AvatarFallback>
+                        </Avatar>
+                        <span className="text-sm font-medium">
+                          {task.assignee.name}
+                        </span>
+                      </div>
+                    ) : (
+                      <span className="text-muted-foreground text-xs">-</span>
+                    )}
+                  </div>
+                </div>
+
+                {/* Reporter */}
+                <div className="flex items-center justify-between px-4 py-3.5">
+                  <div className="flex items-center gap-3">
+                    <div className="bg-muted flex h-8 w-8 items-center justify-center rounded-lg">
+                      <IconFlag className="text-muted-foreground h-4 w-4" />
+                    </div>
+                    <span className="text-muted-foreground text-sm">
+                      Reporter
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    {task.reporter ? (
+                      <div className="flex items-center gap-2">
+                        <Avatar className="h-6 w-6">
+                          <AvatarImage
+                            src={`https://api.dicebear.com/7.x/initials/svg?seed=${task.reporter.name}`}
+                            alt={task.reporter.name}
+                          />
+                          <AvatarFallback>
+                            {task.reporter.name.charAt(0)}
+                          </AvatarFallback>
+                        </Avatar>
+                        <span className="text-sm font-medium">
+                          {task.reporter.name}
+                        </span>
+                      </div>
+                    ) : (
+                      <span className="text-muted-foreground text-xs">-</span>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>

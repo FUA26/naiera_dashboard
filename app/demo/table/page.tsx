@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { getTasks } from "./actions";
+import { getProjects, getTasks, getUsers } from "./actions";
 import { searchParamsCache } from "./search-params";
 import { TasksTable } from "./tasks-table";
 import { type SearchParams } from "nuqs/server";
@@ -10,20 +10,38 @@ interface PageProps {
 
 export default async function TasksPage({ searchParams }: PageProps) {
   // Parse search params using nuqs cache
-  const { page, pageSize, sort, title, status, priority, dateFrom, dateTo } =
-    await searchParamsCache.parse(searchParams);
-
-  // Fetch data from DB
-  const { data, pageCount } = await getTasks({
+  const {
     page,
     pageSize,
     sort,
     title,
     status,
     priority,
+    projectId,
+    assigneeId,
     dateFrom,
     dateTo,
-  });
+  } = await searchParamsCache.parse(searchParams);
+
+  // Fetch data in parallel
+  const [tasksData, projects, users] = await Promise.all([
+    getTasks({
+      page,
+      pageSize,
+      sort,
+      title,
+      status,
+      priority,
+      projectId,
+      assigneeId,
+      dateFrom,
+      dateTo,
+    }),
+    getProjects(),
+    getUsers(),
+  ]);
+
+  const { data, pageCount } = tasksData;
 
   return (
     <div className="container mx-auto py-10">
@@ -35,7 +53,12 @@ export default async function TasksPage({ searchParams }: PageProps) {
       </div>
 
       <Suspense fallback={<div>Loading tasks...</div>}>
-        <TasksTable data={data} pageCount={pageCount} />
+        <TasksTable
+          data={data}
+          pageCount={pageCount}
+          projects={projects}
+          users={users}
+        />
       </Suspense>
     </div>
   );

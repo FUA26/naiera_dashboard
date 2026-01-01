@@ -18,14 +18,14 @@ import {
   IconEye,
   IconTrash,
 } from "@tabler/icons-react";
-import { Task } from "@/db/schema";
+import { TaskWithRelations } from "../columns";
 import { DeleteTaskDialog } from "./delete-task-dialog";
 import { EditTaskDialog } from "./edit-task-dialog";
 import { ViewTaskSheet } from "./view-task-sheet";
 import { toast } from "sonner";
 
 interface TaskActionsProps {
-  task: Task;
+  task: TaskWithRelations;
   onTaskUpdated?: () => void;
 }
 

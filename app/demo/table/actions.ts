@@ -1,7 +1,7 @@
 "use server";
 
 import { db } from "@/db";
-import { tasks, type Task } from "@/db/schema";
+import { tasks, type Task, projects, users } from "@/db/schema";
 import { and, asc, desc, eq, gte, inArray, like, lte, sql } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 
@@ -12,9 +12,19 @@ export type GetTasksParams = {
   title?: string;
   status?: string;
   priority?: string;
+  projectId?: string;
+  assigneeId?: string;
   dateFrom?: string;
   dateTo?: string;
 };
+
+export async function getProjects() {
+  return await db.select().from(projects);
+}
+
+export async function getUsers() {
+  return await db.select().from(users);
+}
 
 export async function getTasks(params: GetTasksParams) {
   const page = params.page || 1;
@@ -27,10 +37,18 @@ export async function getTasks(params: GetTasksParams) {
     conditions.push(like(tasks.title, `%${params.title}%`));
   }
   if (params.status) {
-    conditions.push(inArray(tasks.status, params.status.split(".")));
+    conditions.push(inArray(tasks.status, params.status.split(".") as any[]));
   }
   if (params.priority) {
-    conditions.push(inArray(tasks.priority, params.priority.split(".")));
+    conditions.push(
+      inArray(tasks.priority, params.priority.split(".") as any[])
+    );
+  }
+  if (params.projectId) {
+    conditions.push(inArray(tasks.projectId, params.projectId.split(".")));
+  }
+  if (params.assigneeId) {
+    conditions.push(inArray(tasks.assigneeId, params.assigneeId.split(".")));
   }
 
   // Date filter
@@ -67,13 +85,17 @@ export async function getTasks(params: GetTasksParams) {
     orderBy = order === "desc" ? desc(sortCol) : asc(sortCol);
   }
 
-  const data = await db
-    .select()
-    .from(tasks)
-    .where(whereCondition)
-    .limit(pageSize)
-    .offset(offset)
-    .orderBy(orderBy);
+  const data = await db.query.tasks.findMany({
+    where: whereCondition,
+    limit: pageSize,
+    offset: offset,
+    orderBy: [orderBy],
+    with: {
+      project: true,
+      assignee: true,
+      reporter: true,
+    },
+  });
 
   const countResult = await db
     .select({ count: sql<number>`count(*)` })
@@ -104,7 +126,10 @@ export async function updateTaskStatus({
   status: string;
 }) {
   if (!ids.length) return;
-  await db.update(tasks).set({ status }).where(inArray(tasks.id, ids));
+  await db
+    .update(tasks)
+    .set({ status: status as any })
+    .where(inArray(tasks.id, ids));
 
   revalidatePath("/demo/table");
 }
@@ -132,9 +157,9 @@ export async function updateTask({
     .update(tasks)
     .set({
       title,
-      status,
-      priority,
-      label,
+      status: status as any,
+      priority: priority as any,
+      label: label as any,
       estimatedHours,
     })
     .where(eq(tasks.id, id));

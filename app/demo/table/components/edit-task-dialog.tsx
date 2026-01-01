@@ -32,7 +32,7 @@ import {
   IconDeviceFloppy,
   IconEdit,
 } from "@tabler/icons-react";
-import { Task } from "@/db/schema";
+import { Task, TaskStatus, TaskPriority, TaskLabel } from "@/db/schema";
 import { updateTask } from "../actions";
 import { toast } from "sonner";
 
@@ -218,7 +218,10 @@ export function EditTaskDialog({
                 <Select
                   value={formData.status}
                   onValueChange={(value) =>
-                    setFormData((prev) => ({ ...prev, status: value }))
+                    setFormData((prev) => ({
+                      ...prev,
+                      status: value as TaskStatus,
+                    }))
                   }
                   disabled={isSubmitting}
                 >
@@ -248,7 +251,10 @@ export function EditTaskDialog({
                 <Select
                   value={formData.priority}
                   onValueChange={(value) =>
-                    setFormData((prev) => ({ ...prev, priority: value }))
+                    setFormData((prev) => ({
+                      ...prev,
+                      priority: value as TaskPriority,
+                    }))
                   }
                   disabled={isSubmitting}
                 >
@@ -281,7 +287,10 @@ export function EditTaskDialog({
                 <Select
                   value={formData.label}
                   onValueChange={(value) =>
-                    setFormData((prev) => ({ ...prev, label: value }))
+                    setFormData((prev) => ({
+                      ...prev,
+                      label: value as TaskLabel,
+                    }))
                   }
                   disabled={isSubmitting}
                 >

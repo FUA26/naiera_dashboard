@@ -63,6 +63,10 @@ export function useDataTable<TData, TValue>({
       filters.push({ id: "status", value: urlParams.status.split(".") });
     if (urlParams.priority)
       filters.push({ id: "priority", value: urlParams.priority.split(".") });
+    if (urlParams.projectId)
+      filters.push({ id: "project", value: urlParams.projectId.split(".") });
+    if (urlParams.assigneeId)
+      filters.push({ id: "assignee", value: urlParams.assigneeId.split(".") });
     // Handle date filters
     if (urlParams.dateFrom || urlParams.dateTo) {
       filters.push({
@@ -78,6 +82,8 @@ export function useDataTable<TData, TValue>({
     urlParams.title,
     urlParams.status,
     urlParams.priority,
+    urlParams.projectId,
+    urlParams.assigneeId,
     urlParams.dateFrom,
     urlParams.dateTo,
   ]);
@@ -131,20 +137,34 @@ export function useDataTable<TData, TValue>({
       const priorityFilter = newFilters.find(
         (f: any) => f.id === "priority"
       )?.value;
+      const projectFilter = newFilters.find(
+        (f: any) => f.id === "project"
+      )?.value;
+      const assigneeFilter = newFilters.find(
+        (f: any) => f.id === "assignee"
+      )?.value;
       const dateFilter = newFilters.find(
         (f: any) => f.id === "createdAt"
       )?.value;
 
-      // Prepare date filter values
+      // Prepare date filter values - use local date format to avoid timezone issues
       let dateFrom: string | null = null;
       let dateTo: string | null = null;
 
+      // Helper function to format date as YYYY-MM-DD in local timezone
+      const formatLocalDate = (date: Date): string => {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, "0");
+        const day = String(date.getDate()).padStart(2, "0");
+        return `${year}-${month}-${day}`;
+      };
+
       if (dateFilter && typeof dateFilter === "object") {
         if (dateFilter.from) {
-          dateFrom = dateFilter.from.toISOString().split("T")[0];
+          dateFrom = formatLocalDate(dateFilter.from);
         }
         if (dateFilter.to) {
-          dateTo = dateFilter.to.toISOString().split("T")[0];
+          dateTo = formatLocalDate(dateFilter.to);
         }
       }
 
@@ -157,6 +177,12 @@ export function useDataTable<TData, TValue>({
         priority: Array.isArray(priorityFilter)
           ? priorityFilter.join(".")
           : (priorityFilter as string) || null,
+        projectId: Array.isArray(projectFilter)
+          ? projectFilter.join(".")
+          : (projectFilter as string) || null,
+        assigneeId: Array.isArray(assigneeFilter)
+          ? assigneeFilter.join(".")
+          : (assigneeFilter as string) || null,
         dateFrom,
         dateTo,
         page: 1, // Reset page on filter change

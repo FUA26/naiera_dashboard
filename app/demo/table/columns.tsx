@@ -12,9 +12,19 @@ import {
   IconArrowRight,
   IconArrowUp,
 } from "@tabler/icons-react";
-import { Task } from "@/db/schema";
+import { Task, Project, User } from "@/db/schema";
 import { DataTableColumnHeader } from "@/components/data-table";
 import { TaskActions } from "./components/task-actions";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+
+// Type definition for task with relations
+export type TaskWithRelations = Task & {
+  project: Project | null;
+  assignee: User | null;
+  reporter: User | null;
+};
+
+// ... (keep existing statusIcons, priorityIcons, etc.)
 
 // Status icon mapping
 const statusIcons: Record<Task["status"], React.ReactNode> = {
@@ -22,6 +32,7 @@ const statusIcons: Record<Task["status"], React.ReactNode> = {
   "in-progress": <IconLoader className="h-4 w-4 animate-spin text-blue-500" />,
   done: <IconCircleCheck className="h-4 w-4 text-green-500" />,
   canceled: <IconCircleX className="h-4 w-4 text-red-500" />,
+  // Fallback if needed, but type should enforce these
 };
 
 const statusLabels: Record<Task["status"], string> = {
@@ -55,7 +66,7 @@ const labelVariants: Record<
   documentation: "outline",
 };
 
-export const columns: ColumnDef<Task>[] = [
+export const columns: ColumnDef<TaskWithRelations>[] = [
   // Select column
   {
     id: "select",
@@ -82,13 +93,19 @@ export const columns: ColumnDef<Task>[] = [
   // Task ID column
   {
     accessorKey: "id",
-    header: "Task",
-    cell: ({ row }) => (
-      <div className="text-muted-foreground font-medium">
-        {row.getValue("id")}
-      </div>
-    ),
-    enableHiding: false,
+    header: "Task ID",
+    cell: ({ row }) => {
+      const id = row.getValue("id") as string;
+      // Remove any existing prefix and show shortened format
+      const cleanId = id.replace(/^task-/i, "");
+      const shortId = cleanId.slice(0, 8).toUpperCase();
+      return (
+        <div className="text-muted-foreground w-[100px] font-mono text-xs">
+          #{shortId}
+        </div>
+      );
+    },
+    enableHiding: true,
   },
   // Title column with label badge
   {
@@ -103,8 +120,45 @@ export const columns: ColumnDef<Task>[] = [
           <Badge variant={labelVariants[label]} className="shrink-0">
             {label}
           </Badge>
-          <span className="truncate">{row.getValue("title")}</span>
+          <span className="truncate font-medium">{row.getValue("title")}</span>
         </div>
+      );
+    },
+  },
+  // Project Column
+  {
+    accessorKey: "project",
+    header: "Project",
+    cell: ({ row }) => {
+      const project = row.original.project;
+      return project ? (
+        <Badge variant="outline" className="font-normal">
+          {project.name}
+        </Badge>
+      ) : (
+        <span className="text-muted-foreground text-xs">-</span>
+      );
+    },
+  },
+  // Assignee Column
+  {
+    accessorKey: "assignee",
+    header: "Assignee",
+    cell: ({ row }) => {
+      const assignee = row.original.assignee;
+      return assignee ? (
+        <div className="flex items-center gap-2">
+          <Avatar className="h-6 w-6">
+            <AvatarImage
+              src={`https://api.dicebear.com/7.x/initials/svg?seed=${assignee.name}`}
+              alt={assignee.name}
+            />
+            <AvatarFallback>{assignee.name.charAt(0)}</AvatarFallback>
+          </Avatar>
+          <span className="text-sm">{assignee.name}</span>
+        </div>
+      ) : (
+        <span className="text-muted-foreground text-xs">-</span>
       );
     },
   },
@@ -168,7 +222,7 @@ export const columns: ColumnDef<Task>[] = [
         <div>
           {date.toLocaleDateString("id-ID", {
             year: "numeric",
-            month: "long",
+            month: "short",
             day: "numeric",
           })}
         </div>
