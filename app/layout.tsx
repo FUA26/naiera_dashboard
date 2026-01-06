@@ -1,26 +1,28 @@
+import { Inter } from "next/font/google";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import { ThemeProvider } from "@/components/providers/theme-provider";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
-import { Toaster } from "@/components/ui/sonner";
-import { env } from "@/env";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+import "./globals.css";
+import { Providers } from "@/components/providers";
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const fontSans = Inter({
   subsets: ["latin"],
+  variable: "--font-sans",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: `${env.NEXT_PUBLIC_APP_NAME} - Enterprise Ready Starter`,
+  title: "Super App Naiera - Layanan Digital Kabupaten Naiera",
   description:
-    "A production-ready Next.js boilerplate with TypeScript, Tailwind CSS, Storybook, and comprehensive developer tooling.",
-  metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
+    "Akses ratusan layanan pemerintahan dengan mudah, cepat, dan aman dalam satu platform digital. Kabupaten Naiera menuju digitalisasi pelayanan publik.",
+  keywords: [
+    "super app",
+    "naiera",
+    "kabupaten naiera",
+    "layanan digital",
+    "pemerintahan",
+    "e-government",
+  ],
 };
 
 export default function RootLayout({
@@ -29,20 +31,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        suppressHydrationWarning
-      >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
+    <html lang="id" suppressHydrationWarning>
+      <body className={`${fontSans.variable} font-sans antialiased`}>
+        <Providers>
           <NuqsAdapter>{children}</NuqsAdapter>
-          <Toaster richColors closeButton position="top-right" />
-        </ThemeProvider>
+        </Providers>
       </body>
     </html>
   );
