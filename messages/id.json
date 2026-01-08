@@ -8,7 +8,100 @@
     "login": "Masuk",
     "menu": "Menu",
     "brandName": "Super App Naiera",
-    "brandSubtitle": "Kabupaten Naiera"
+    "brandSubtitle": "Kabupaten Naiera",
+    "megaMenu": {
+      "services": {
+        "title": "Layanan Publik",
+        "description": "Akses semua layanan pemerintahan secara digital dalam satu pintu.",
+        "items": {
+          "population": {
+            "title": "Kependudukan",
+            "desc": "Layanan KTP, KK, Akta, dan administrasi kependudukan lainnya."
+          },
+          "health": {
+            "title": "Kesehatan",
+            "desc": "Daftar antrian RS/Puskesmas, BPJS, dan layanan kesehatan."
+          },
+          "education": {
+            "title": "Pendidikan",
+            "desc": "Info sekolah, PPDB Online, dan beasiswa pendidikan daerah."
+          },
+          "tax": {
+            "title": "Pajak & Retribusi",
+            "desc": "Cek dan bayar PBB, pajak kendaraan, dan retribusi daerah."
+          },
+          "business": {
+            "title": "Perizinan Usaha",
+            "desc": "Pengajuan SIUP, TDP, dan izin usaha mikro (UMKM) online."
+          },
+          "social": {
+            "title": "Sosial & Bantuan",
+            "desc": "Cek penerima bansos, DTKS, dan pengajuan bantuan sosial."
+          }
+        },
+        "cta": "Lihat Semua Layanan"
+      },
+      "information": {
+        "title": "Informasi Publik",
+        "description": "Pusat informasi dan transparansi pemerintahan daerah.",
+        "items": {
+          "news": {
+            "title": "Berita Terkini",
+            "desc": "Kabar pembangunan dan kegiatan terbaru pemerintah daerah."
+          },
+          "agenda": {
+            "title": "Agenda & Event",
+            "desc": "Kalender kegiatan, festival budaya, dan acara resmi."
+          },
+          "transparency": {
+            "title": "Transparansi",
+            "desc": "Laporan APBD, realisasi anggaran, dan akuntabilitas kinerja."
+          },
+          "regulations": {
+            "title": "Produk Hukum",
+            "desc": "Database Peraturan Daerah (Perda) dan Peraturan Bupati."
+          },
+          "tourism": {
+            "title": "Pariwisata",
+            "desc": "Destinasi wisata, kuliner, dan panduan perjalanan."
+          },
+          "gallery": {
+            "title": "Galeri Foto & Video",
+            "desc": "Dokumentasi visual kegiatan dan potensi daerah."
+          }
+        }
+      },
+      "agency": {
+        "title": "Pemerintahan",
+        "description": "Profil, struktur, dan unit kerja Pemerintah Kabupaten Naiera.",
+        "items": {
+          "profile": {
+            "title": "Profil Daerah",
+            "desc": "Sejarah, geografi, dan visi misi Kabupaten Naiera."
+          },
+          "structure": {
+            "title": "Struktur Organisasi",
+            "desc": "Bupati, Wakil Bupati, dan bagan organisasi pemerintah."
+          },
+          "dinas": {
+            "title": "Perangkat Daerah",
+            "desc": "Daftar Dinas, Badan, dan Kantor di lingkungan Pemkab."
+          },
+          "camat": {
+            "title": "Kecamatan & Desa",
+            "desc": "Data profil kecamatan dan desa/kelurahan se-Kabupaten."
+          },
+          "dpr": {
+            "title": "DPRD",
+            "desc": "Profil dan agenda Dewan Perwakilan Rakyat Daerah."
+          },
+          "contact": {
+            "title": "Kontak Kami",
+            "desc": "Alamat kantor, email, dan saluran pengaduan resmi."
+          }
+        }
+      }
+    }
   },
   "Hero": {
     "titlePart1": "Satu Aplikasi untuk Semua Layanan",

@@ -8,7 +8,100 @@
     "login": "Login",
     "menu": "Menu",
     "brandName": "Super App Naiera",
-    "brandSubtitle": "Naiera Regency"
+    "brandSubtitle": "Naiera Regency",
+    "megaMenu": {
+      "services": {
+        "title": "Public Services",
+        "description": "Access all government services digitally in one place.",
+        "items": {
+          "population": {
+            "title": "Population Admin",
+            "desc": "ID Card, Family Card, Birth Certificate, and other docs."
+          },
+          "health": {
+            "title": "Health",
+            "desc": "Hospital queues, BPJS coverage, and health services."
+          },
+          "education": {
+            "title": "Education",
+            "desc": "School info, Online Student Admission (PPDB), and scholarships."
+          },
+          "tax": {
+            "title": "Tax & Retribution",
+            "desc": "Check and pay property tax, vehicle tax, and local levies."
+          },
+          "business": {
+            "title": "Business Licensing",
+            "desc": "Apply for business permits and SME licenses (UMKM) online."
+          },
+          "social": {
+            "title": "Social Welfare",
+            "desc": "Check social aid eligibility, DTKS, and assistance programs."
+          }
+        },
+        "cta": "View All Services"
+      },
+      "information": {
+        "title": "Public Information",
+        "description": "Center for regional government information and transparency.",
+        "items": {
+          "news": {
+            "title": "Latest News",
+            "desc": "Latest updates on development and government activities."
+          },
+          "agenda": {
+            "title": "Agenda & Events",
+            "desc": "Event calendar, cultural festivals, and official ceremonies."
+          },
+          "transparency": {
+            "title": "Transparency",
+            "desc": "Budget reports (APBD), realization, and accountability."
+          },
+          "regulations": {
+            "title": "Legal Products",
+            "desc": "Database of Local Regulations (Perda) and Regent Regulations."
+          },
+          "tourism": {
+            "title": "Tourism",
+            "desc": "Tourist destinations, culinary guides, and travel info."
+          },
+          "gallery": {
+            "title": "Photo & Video Gallery",
+            "desc": "Visual documentation of regional activities and potential."
+          }
+        }
+      },
+      "agency": {
+        "title": "Government",
+        "description": "Profiles, structure, and work units of Naiera Regency Government.",
+        "items": {
+          "profile": {
+            "title": "Regional Profile",
+            "desc": "History, geography, and vision & mission of Naiera Regency."
+          },
+          "structure": {
+            "title": "Org Structure",
+            "desc": "Regent, Vice Regent, and government organizational chart."
+          },
+          "dinas": {
+            "title": "Regional Agencies",
+            "desc": "List of Agencies, Boards, and Offices in the local government."
+          },
+          "camat": {
+            "title": "Districts & Villages",
+            "desc": "Profile data of all districts and villages in the regency."
+          },
+          "dpr": {
+            "title": "Regional Council",
+            "desc": "Profile and agenda of the Regional People's Rep Council."
+          },
+          "contact": {
+            "title": "Contact Us",
+            "desc": "Office address, email, and official complaint channels."
+          }
+        }
+      }
+    }
   },
   "Hero": {
     "titlePart1": "One App for All Services",

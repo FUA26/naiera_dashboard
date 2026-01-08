@@ -195,18 +195,20 @@ body.a11y-links-underline a {
   text-underline-offset: 3px !important;
 }
 
-/* Monochrome Mode */
-body.a11y-monochrome {
+/* Monochrome Mode - Apply to main content, not body */
+body.a11y-monochrome > *:not(.a11y-widget-root) {
   filter: grayscale(100%) !important;
 }
 
-/* High Contrast Mode */
-body.a11y-high-contrast {
+/* High Contrast Mode - Apply to main content, not body */
+body.a11y-high-contrast > *:not(.a11y-widget-root) {
   filter: contrast(1.5) !important;
+}
+body.a11y-high-contrast {
   --background: oklch(0 0 0);
   --foreground: oklch(1 0 0);
 }
-body.a11y-high-contrast * {
+body.a11y-high-contrast *:not(.a11y-widget-root):not(.a11y-widget-root *) {
   border-color: currentColor !important;
 }
 

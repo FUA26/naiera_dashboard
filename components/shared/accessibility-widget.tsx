@@ -166,7 +166,7 @@ export function AccessibilityWidget() {
   if (!mounted) return null;
 
   return (
-    <>
+    <div className="a11y-widget-root">
       {/* Floating Trigger Button */}
       <button
         onClick={toggleOpen}
@@ -396,7 +396,7 @@ export function AccessibilityWidget() {
           className="fixed inset-0 z-[9997] bg-black/30 backdrop-blur-sm"
         />
       )}
-    </>
+    </div>
   );
 }
 

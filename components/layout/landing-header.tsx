@@ -6,11 +6,13 @@ import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { LanguageSwitcher } from "@/components/shared/language-switcher";
+import { MegaMenu } from "@/components/layout/mega-menu";
 
 export function Header() {
   const t = useTranslations("Navigation");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  // Mobile menu items (simplified version of mega menu)
   const navItems = [
     { label: t("home"), href: "#beranda", active: true },
     { label: t("services"), href: "#layanan", active: false },
@@ -43,24 +45,9 @@ export function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden items-center gap-8 md:flex">
-            {navItems.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className={`relative font-medium transition-all duration-300 ${
-                  item.active
-                    ? "text-emerald-600"
-                    : "text-slate-600 hover:text-emerald-600"
-                }`}
-              >
-                {item.label}
-                {item.active && (
-                  <span className="absolute right-0 -bottom-5 left-0 h-0.5 bg-emerald-600" />
-                )}
-              </a>
-            ))}
-          </nav>
+          <div className="hidden md:block">
+            <MegaMenu />
+          </div>
 
           {/* Action Section */}
           <div className="flex items-center gap-4">
