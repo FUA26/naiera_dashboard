@@ -648,5 +648,60 @@
       "submit": "Submit Complaint",
       "success": "Your complaint has been submitted. Ticket number: #NAI-2026-XXXX"
     }
+  },
+  "Government": {
+    "profile": {
+      "title": "Regional Profile",
+      "subtitle": "Complete information about history, vision mission, and geography of Naiera Regency",
+      "history": "Brief History",
+      "vision": "Vision",
+      "mission": "Mission",
+      "geography": "Geography & Demographics",
+      "symbols": "Regional Symbols",
+      "tabs": {
+        "history": "History",
+        "visionMission": "Vision & Mission",
+        "geography": "Geography"
+      }
+    },
+    "structure": {
+      "title": "Organizational Structure",
+      "subtitle": "Organizational chart of Naiera Regency Government",
+      "regent": "Regent",
+      "viceRegent": "Vice Regent",
+      "secretary": "Regional Secretary",
+      "assistants": "Regional Assistants",
+      "staff": "Expert Staff"
+    },
+    "agencies": {
+      "title": "Regional Agencies",
+      "subtitle": "List of Agencies, Boards, and Offices in Naiera Regency Government",
+      "searchPlaceholder": "Search agencies...",
+      "types": {
+        "all": "All",
+        "dinas": "Agency (Dinas)",
+        "badan": "Board (Badan)",
+        "kantor": "Office (Kantor)",
+        "kecamatan": "District (Kecamatan)"
+      },
+      "website": "Visit Website",
+      "location": "Location"
+    },
+    "districts": {
+      "title": "Districts & Villages",
+      "subtitle": "Administrative data of districts and villages",
+      "searchPlaceholder": "Search district or village...",
+      "villageCount": "{count} Villages",
+      "camat": "Head of District",
+      "villages": "Village List"
+    },
+    "dpr": {
+      "title": "Regional Council",
+      "subtitle": "Regional People's Representative Council of Naiera Regency",
+      "members": "Council Members",
+      "commissions": "Commissions",
+      "agenda": "Meeting Agenda",
+      "fractions": "Fractions"
+    }
   }
 }

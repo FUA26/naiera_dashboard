@@ -1,0 +1,221 @@
+"use client";
+
+import { useState } from "react";
+import { useTranslations } from "next-intl";
+import { Map, User, Home, ChevronRight, Search } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Header } from "@/components/layout/landing-header";
+import { Footer } from "@/components/layout/landing-footer";
+import { Separator } from "@/components/ui/separator";
+
+// Mock Data
+const districtsData = [
+  {
+    id: "1",
+    name: "Naiera Utara",
+    camat: "Budi Harsono, S.IP",
+    address: "Jl. Raya Utara No. 1",
+    villages: [
+      "Desa Maju",
+      "Kelurahan Sejahtera",
+      "Desa Makmur",
+      "Desa Damai",
+      "Kelurahan Indah",
+    ],
+  },
+  {
+    id: "2",
+    name: "Naiera Selatan",
+    camat: "Siti Aminah, S.Sos",
+    address: "Jl. Selatan Raya No. 10",
+    villages: ["Desa Pantai", "Desa Laut", "Kelurahan Pesisir", "Desa Karang"],
+  },
+  {
+    id: "3",
+    name: "Naiera Barat",
+    camat: "Joko Susilo, M.Si",
+    address: "Jl. Barat Utama No. 5",
+    villages: ["Desa Bukit", "Desa Lembah", "Desa Sungai", "Kelurahan Gunung"],
+  },
+  {
+    id: "4",
+    name: "Naiera Timur",
+    camat: "Rina Wati, S.E",
+    address: "Jl. Timur Indah No. 8",
+    villages: [
+      "Desa Matahari",
+      "Desa Bulan",
+      "Kelurahan Bintang",
+      "Desa Langit",
+      "Desa Awan",
+    ],
+  },
+  {
+    id: "5",
+    name: "Naiera Pusat",
+    camat: "Ahmad Yani, S.IP",
+    address: "Jl. Protokol No. 1",
+    villages: [
+      "Kelurahan Kota",
+      "Kelurahan Alun-alun",
+      "Kelurahan Pasar",
+      "Desa Taman",
+    ],
+  },
+];
+
+export default function DistrictsPage() {
+  const t = useTranslations("Government.districts");
+  const [selectedId, setSelectedId] = useState(districtsData[0].id);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const filteredDistricts = districtsData.filter((d) =>
+    d.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const selectedDistrict =
+    districtsData.find((d) => d.id === selectedId) || districtsData[0];
+
+  return (
+    <>
+      <Header />
+      <main className="min-h-screen bg-slate-50">
+        {/* Hero Section */}
+        <section className="bg-gradient-to-br from-teal-700 to-teal-800 py-16 text-white">
+          <div className="container mx-auto px-4 text-center">
+            <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-sm">
+              <Map className="h-8 w-8" />
+            </div>
+            <h1 className="mb-4 text-3xl font-bold md:text-4xl">
+              {t("title")}
+            </h1>
+            <p className="mx-auto max-w-2xl text-lg text-white/80">
+              {t("subtitle")}
+            </p>
+          </div>
+        </section>
+
+        {/* Layout */}
+        <section className="container mx-auto px-4 py-8">
+          <div className="flex flex-col gap-6 lg:h-[600px] lg:flex-row">
+            {/* Sidebar List */}
+            <Card className="flex h-[500px] w-full flex-col lg:h-full lg:w-1/3">
+              <div className="border-b p-4">
+                <div className="relative">
+                  <Search className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-slate-400" />
+                  <Input
+                    placeholder={t("searchPlaceholder")}
+                    className="pl-9"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                  />
+                </div>
+              </div>
+              <ScrollArea className="flex-1">
+                <div className="space-y-1 p-2">
+                  {filteredDistricts.map((district) => (
+                    <button
+                      key={district.id}
+                      onClick={() => setSelectedId(district.id)}
+                      className={`flex w-full items-center justify-between rounded-lg px-4 py-3 text-sm font-medium transition-colors ${
+                        selectedId === district.id
+                          ? "bg-teal-50 text-teal-700"
+                          : "text-slate-600 hover:bg-slate-50"
+                      }`}
+                    >
+                      <div className="flex items-center gap-3">
+                        <div
+                          className={`flex h-8 w-8 items-center justify-center rounded-full ${selectedId === district.id ? "bg-teal-200 text-teal-700" : "bg-slate-100 text-slate-500"}`}
+                        >
+                          <Map className="h-4 w-4" />
+                        </div>
+                        <div className="text-left">
+                          <span className="block">{district.name}</span>
+                          <span className="text-xs font-normal text-slate-400">
+                            {t("villageCount", {
+                              count: district.villages.length,
+                            })}
+                          </span>
+                        </div>
+                      </div>
+                      {selectedId === district.id && (
+                        <ChevronRight className="h-4 w-4" />
+                      )}
+                    </button>
+                  ))}
+                  {filteredDistricts.length === 0 && (
+                    <div className="p-4 text-center text-sm text-slate-500">
+                      Tidak ditemukan.
+                    </div>
+                  )}
+                </div>
+              </ScrollArea>
+            </Card>
+
+            {/* Detail View */}
+            <Card className="flex h-full w-full flex-col overflow-hidden lg:w-2/3">
+              <CardHeader className="border-b bg-slate-50">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <CardTitle className="text-2xl text-slate-800">
+                      {selectedDistrict.name}
+                    </CardTitle>
+                    <p className="mt-1 text-sm text-slate-500">
+                      {selectedDistrict.address}
+                    </p>
+                  </div>
+                  <div className="hidden text-right sm:block">
+                    <p className="mb-1 text-xs font-bold tracking-wider text-slate-400 uppercase">
+                      {t("camat")}
+                    </p>
+                    <div className="flex items-center justify-end gap-2">
+                      <User className="h-4 w-4 text-teal-600" />
+                      <span className="font-medium text-slate-700">
+                        {selectedDistrict.camat}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent className="flex-1 p-0">
+                <ScrollArea className="h-full">
+                  <div className="p-6">
+                    <h3 className="mb-4 flex items-center gap-2 font-semibold text-slate-800">
+                      <Home className="h-4 w-4 text-teal-600" />
+                      {t("villages")}
+                    </h3>
+                    <div className="grid gap-3 sm:grid-cols-2">
+                      {selectedDistrict.villages.map((village, idx) => (
+                        <div
+                          key={idx}
+                          className="flex items-center gap-3 rounded-lg border border-slate-200 bg-white p-3 transition-colors hover:border-teal-200"
+                        >
+                          <div className="h-2 w-2 rounded-full bg-teal-400" />
+                          <span className="text-slate-700">{village}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    <Separator className="my-6" />
+
+                    <div className="text-sm text-slate-500">
+                      <p className="mb-2">Informasi tambahan:</p>
+                      <p>
+                        Kecamatan {selectedDistrict.name} merupakan salah satu
+                        kecamatan yang memiliki potensi wisata alam yang cukup
+                        besar...
+                      </p>
+                    </div>
+                  </div>
+                </ScrollArea>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </>
+  );
+}

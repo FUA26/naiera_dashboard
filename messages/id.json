@@ -654,5 +654,60 @@
       "submit": "Kirim Pengaduan",
       "success": "Pengaduan Anda berhasil dikirim. Nomor tiket: #NAI-2026-XXXX"
     }
+  },
+  "Government": {
+    "profile": {
+      "title": "Profil Daerah",
+      "subtitle": "Informasi lengkap tentang sejarah, visi misi, dan geografi Kabupaten Naiera",
+      "history": "Sejarah Singkat",
+      "vision": "Visi",
+      "mission": "Misi",
+      "geography": "Geografi & Demografi",
+      "symbols": "Lambang Daerah",
+      "tabs": {
+        "history": "Sejarah",
+        "visionMission": "Visi & Misi",
+        "geography": "Geografi"
+      }
+    },
+    "structure": {
+      "title": "Struktur Organisasi",
+      "subtitle": "Bagan struktur organisasi Pemerintah Kabupaten Naiera",
+      "regent": "Bupati",
+      "viceRegent": "Wakil Bupati",
+      "secretary": "Sekretaris Daerah",
+      "assistants": "Asisten Daerah",
+      "staff": "Staf Ahli"
+    },
+    "agencies": {
+      "title": "Perangkat Daerah",
+      "subtitle": "Daftar Dinas, Badan, dan Kantor di lingkungan Pemerintah Kabupaten Naiera",
+      "searchPlaceholder": "Cari perangkat daerah...",
+      "types": {
+        "all": "Semua",
+        "dinas": "Dinas",
+        "badan": "Badan",
+        "kantor": "Kantor",
+        "kecamatan": "Kecamatan"
+      },
+      "website": "Kunjungi Website",
+      "location": "Lokasi"
+    },
+    "districts": {
+      "title": "Kecamatan & Desa",
+      "subtitle": "Data wilayah administrasi kecamatan dan desa/kelurahan",
+      "searchPlaceholder": "Cari kecamatan atau desa...",
+      "villageCount": "{count} Desa/Kelurahan",
+      "camat": "Camat",
+      "villages": "Daftar Desa"
+    },
+    "dpr": {
+      "title": "DPRD",
+      "subtitle": "Dewan Perwakilan Rakyat Daerah Kabupaten Naiera",
+      "members": "Anggota Dewan",
+      "commissions": "Komisi",
+      "agenda": "Agenda Rapat",
+      "fractions": "Fraksi"
+    }
   }
 }

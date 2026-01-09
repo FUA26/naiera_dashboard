@@ -182,35 +182,35 @@ export function MegaMenu() {
           <NavigationMenuContent>
             <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
               <ListItem
-                href="#"
+                href="/pemerintahan/profil"
                 title={t("agency.items.profile.title")}
                 icon={Landmark}
               >
                 {t("agency.items.profile.desc")}
               </ListItem>
               <ListItem
-                href="#"
+                href="/pemerintahan/struktur"
                 title={t("agency.items.structure.title")}
                 icon={UserCircle}
               >
                 {t("agency.items.structure.desc")}
               </ListItem>
               <ListItem
-                href="#"
+                href="/pemerintahan/perangkat-daerah"
                 title={t("agency.items.dinas.title")}
                 icon={Building}
               >
                 {t("agency.items.dinas.desc")}
               </ListItem>
               <ListItem
-                href="#"
+                href="/pemerintahan/kecamatan-desa"
                 title={t("agency.items.camat.title")}
                 icon={Tent}
               >
                 {t("agency.items.camat.desc")}
               </ListItem>
               <ListItem
-                href="#"
+                href="/pemerintahan/dprd"
                 title={t("agency.items.dpr.title")}
                 icon={Building2}
               >
