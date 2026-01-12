@@ -132,17 +132,17 @@ export function EventsSection() {
   ];
 
   return (
-    <section className="bg-slate-50 py-16 md:py-20" id="acara">
+    <section className="bg-muted py-16 md:py-20" id="acara">
       <div className="container mx-auto max-w-7xl px-4">
         {/* Section Header */}
         <div className="mb-12 text-center">
-          <span className="mb-4 inline-block rounded-full bg-purple-100 px-4 py-2 text-sm font-semibold text-purple-700">
+          <span className="mb-4 inline-block rounded-full bg-purple-100 px-4 py-2 text-sm font-semibold text-purple-700 dark:bg-purple-900/30 dark:text-purple-400">
             {t("label")}
           </span>
-          <h2 className="mb-3 text-3xl font-bold text-slate-800 md:text-4xl">
+          <h2 className="text-foreground mb-3 text-3xl font-bold md:text-4xl">
             {t("title")}
           </h2>
-          <p className="mx-auto max-w-2xl text-base text-slate-600 md:text-lg">
+          <p className="text-muted-foreground mx-auto max-w-2xl text-base md:text-lg">
             {t("description")}
           </p>
         </div>
@@ -152,9 +152,9 @@ export function EventsSection() {
           <div className="space-y-6 lg:col-span-2">
             {/* Featured Event */}
             {events[0] && (
-              <div className="overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-lg">
+              <div className="border-border bg-card overflow-hidden rounded-2xl border shadow-lg">
                 {/* Featured Event Image */}
-                <div className="relative h-64 bg-gradient-to-br from-primary-light to-blue-100 md:h-80">
+                <div className="from-primary-light relative h-64 bg-gradient-to-br to-blue-100 md:h-80">
                   {/* Placeholder - replace with actual image */}
                   <div className="from-primary absolute inset-0 bg-gradient-to-br to-blue-600 opacity-70" />
                   <div className="absolute inset-0 flex items-center justify-center">
@@ -176,23 +176,23 @@ export function EventsSection() {
                   </h3>
 
                   <div className="mb-6 space-y-3">
-                    <div className="flex items-center gap-3 text-slate-600">
+                    <div className="text-muted-foreground flex items-center gap-3">
                       <Calendar size={18} className="text-primary" />
                       <span className="font-medium">
                         {formatDate(events[0].dateStr)}
                       </span>
-                      <span className="text-slate-400">|</span>
+                      <span className="text-muted-foreground">|</span>
                       <span>{events[0].time}</span>
                     </div>
 
                     {events[0].description && (
-                      <p className="leading-relaxed text-slate-600">
+                      <p className="text-muted-foreground leading-relaxed">
                         {events[0].description}
                       </p>
                     )}
                   </div>
 
-                  <div className="flex items-center justify-between border-t border-slate-100 pt-4">
+                  <div className="border-border flex items-center justify-between border-t pt-4">
                     <a
                       href={`/agenda/${events[0].id}`}
                       className="group text-primary hover:text-primary-hover inline-flex items-center gap-2 font-semibold"
@@ -213,7 +213,7 @@ export function EventsSection() {
 
             {/* Event List */}
             <div className="space-y-4">
-              <h4 className="mb-4 text-lg font-bold text-slate-800">
+              <h4 className="text-foreground mb-4 text-lg font-bold">
                 {t("finished")}
               </h4>
 
@@ -221,28 +221,28 @@ export function EventsSection() {
                 <a
                   key={event.id}
                   href={`/agenda/${event.id}`}
-                  className="group hover:border-primary/30 flex gap-4 rounded-xl border border-slate-100 bg-white p-4 transition-all duration-300 hover:shadow-lg"
+                  className="group hover:border-primary/30 border-border bg-card flex gap-4 rounded-xl border p-4 transition-all duration-300 hover:shadow-lg"
                 >
                   {/* Event Thumbnail */}
-                  <div className="relative h-24 w-24 flex-shrink-0 overflow-hidden rounded-lg bg-gradient-to-br from-slate-100 to-slate-200">
+                  <div className="from-muted to-muted-foreground/20 relative h-24 w-24 flex-shrink-0 overflow-hidden rounded-lg bg-gradient-to-br">
                     <div className="from-primary/40 absolute inset-0 bg-gradient-to-br to-blue-500/40" />
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <Calendar size={32} className="text-slate-400" />
+                      <Calendar size={32} className="text-muted-foreground" />
                     </div>
                   </div>
 
                   {/* Event Info */}
                   <div className="min-w-0 flex-1">
-                    <h5 className="group-hover:text-primary mb-2 line-clamp-2 font-bold text-slate-800 transition-colors">
+                    <h5 className="group-hover:text-primary text-foreground mb-2 line-clamp-2 font-bold transition-colors">
                       {event.title}
                     </h5>
-                    <div className="mb-2 flex items-center gap-2 text-sm text-slate-500">
+                    <div className="text-muted-foreground mb-2 flex items-center gap-2 text-sm">
                       <Calendar size={14} />
                       <span>{formatDate(event.dateStr)}</span>
                       <span>•</span>
                       <span>{event.time}</span>
                     </div>
-                    <div className="flex items-center gap-2 text-sm text-slate-500">
+                    <div className="text-muted-foreground flex items-center gap-2 text-sm">
                       <MapPin size={14} />
                       <span className="line-clamp-1">{event.location}</span>
                     </div>
@@ -250,7 +250,7 @@ export function EventsSection() {
 
                   {/* Status Badge */}
                   <div className="flex items-center">
-                    <span className="rounded-lg bg-slate-100 px-3 py-1 text-xs font-medium whitespace-nowrap text-slate-600">
+                    <span className="bg-muted text-muted-foreground rounded-lg px-3 py-1 text-xs font-medium whitespace-nowrap">
                       {t("completed")}
                     </span>
                   </div>
@@ -275,8 +275,8 @@ export function EventsSection() {
 
           {/* Right Column - Calendar Widget */}
           <div className="lg:col-span-1">
-            <div className="sticky top-24 rounded-2xl border border-slate-100 bg-white p-6 shadow-sm">
-              <h4 className="mb-6 text-lg font-bold text-slate-800">
+            <div className="border-border bg-card sticky top-24 rounded-2xl border p-6 shadow-sm">
+              <h4 className="text-foreground mb-6 text-lg font-bold">
                 {t("title")}
               </h4>
 
@@ -291,11 +291,11 @@ export function EventsSection() {
                       )
                     )
                   }
-                  className="rounded-lg p-2 transition-colors hover:bg-slate-100"
+                  className="hover:bg-muted rounded-lg p-2 transition-colors"
                 >
-                  <ChevronLeft size={20} className="text-slate-600" />
+                  <ChevronLeft size={20} className="text-muted-foreground" />
                 </button>
-                <div className="font-semibold text-slate-800">{monthName}</div>
+                <div className="text-foreground font-semibold">{monthName}</div>
                 <button
                   onClick={() =>
                     setCurrentMonth(
@@ -305,9 +305,9 @@ export function EventsSection() {
                       )
                     )
                   }
-                  className="rounded-lg p-2 transition-colors hover:bg-slate-100"
+                  className="hover:bg-muted rounded-lg p-2 transition-colors"
                 >
-                  <ChevronRight size={20} className="text-slate-600" />
+                  <ChevronRight size={20} className="text-muted-foreground" />
                 </button>
               </div>
 
@@ -318,7 +318,7 @@ export function EventsSection() {
                   {weekDays.map((day) => (
                     <div
                       key={day}
-                      className="py-2 text-center text-xs font-medium text-slate-500"
+                      className="text-muted-foreground py-2 text-center text-xs font-medium"
                     >
                       {day}
                     </div>
@@ -346,7 +346,7 @@ export function EventsSection() {
                             ? "bg-primary text-primary-foreground font-bold"
                             : hasEvent
                               ? "bg-primary-lighter text-primary hover:bg-primary-light font-semibold"
-                              : "text-slate-700 hover:bg-slate-50"
+                              : "text-foreground hover:bg-muted"
                         }`}
                       >
                         {day}
@@ -357,22 +357,31 @@ export function EventsSection() {
               </div>
 
               {/* Calendar Legend */}
-              <div className="space-y-2 border-t border-slate-100 pt-4">
+              <div className="border-border space-y-2 border-t pt-4">
                 <div className="flex items-center gap-2 text-sm">
                   <div className="bg-primary h-4 w-4 rounded" />
-                  <span className="text-slate-600">{t("calToday")}</span>
+                  <span className="text-muted-foreground">{t("calToday")}</span>
                 </div>
                 <div className="flex items-center gap-2 text-sm">
                   <div className="border-primary/30 bg-primary-lighter h-4 w-4 rounded border" />
-                  <span className="text-slate-600">{t("calHasEvent")}</span>
+                  <span className="text-muted-foreground">
+                    {t("calHasEvent")}
+                  </span>
                 </div>
               </div>
 
               {/* No Event State */}
-              <div className="mt-6 rounded-xl bg-slate-50 p-4 text-center">
-                <Calendar size={40} className="mx-auto mb-2 text-slate-300" />
-                <p className="text-sm text-slate-500">{t("calNoEvent")}</p>
-                <p className="text-xs text-slate-400">{t("calNoEventDesc")}</p>
+              <div className="bg-muted mt-6 rounded-xl p-4 text-center">
+                <Calendar
+                  size={40}
+                  className="text-muted-foreground/50 mx-auto mb-2"
+                />
+                <p className="text-muted-foreground text-sm">
+                  {t("calNoEvent")}
+                </p>
+                <p className="text-muted-foreground/70 text-xs">
+                  {t("calNoEventDesc")}
+                </p>
               </div>
 
               {/* View Full Calendar */}

@@ -13,7 +13,7 @@ export default function ProfilePage() {
   return (
     <>
       <Header />
-      <main className="min-h-screen bg-slate-50">
+      <main className="bg-muted min-h-screen">
         {/* Hero Section */}
         <section className="bg-gradient-to-br from-emerald-800 to-emerald-900 py-16 text-white">
           <div className="container mx-auto px-4 text-center">
@@ -54,7 +54,7 @@ export default function ProfilePage() {
                 <CardHeader>
                   <CardTitle>{t("history")}</CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-4 leading-relaxed text-slate-600">
+                <CardContent className="text-muted-foreground space-y-4 leading-relaxed">
                   <p>
                     Kabupaten Naiera memiliki sejarah panjang yang dimulai sejak
                     era kerajaan kuno. Nama "Naiera" sendiri berasal dari bahasa
@@ -80,7 +80,7 @@ export default function ProfilePage() {
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <blockquote className="border-l-4 border-primary pl-4 text-xl font-medium text-slate-800 italic">
+                    <blockquote className="border-primary text-foreground border-l-4 pl-4 text-xl font-medium italic">
                       "Terwujudnya Kabupaten Naiera yang Maju, Sejahtera, dan
                       Berbudaya berbasis Teknologi Digital pada tahun 2030"
                     </blockquote>
@@ -94,7 +94,7 @@ export default function ProfilePage() {
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <ul className="list-disc space-y-3 pl-5 text-slate-700">
+                    <ul className="text-muted-foreground list-disc space-y-3 pl-5">
                       <li>
                         Meningkatkan kualitas sumber daya manusia yang berdaya
                         saing.
@@ -125,32 +125,40 @@ export default function ProfilePage() {
                   <CardTitle>{t("geography")}</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-6">
-                  <div className="aspect-video w-full overflow-hidden rounded-lg bg-slate-200">
-                    <div className="flex h-full items-center justify-center text-slate-400">
+                  <div className="bg-muted aspect-video w-full overflow-hidden rounded-lg">
+                    <div className="text-muted-foreground flex h-full items-center justify-center">
                       <Map className="mr-2 h-6 w-6" />
                       Peta Wilayah Kabupaten Naiera
                     </div>
                   </div>
                   <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-                    <div className="rounded-lg bg-primary-lighter p-4 text-center">
-                      <p className="text-sm text-slate-500">Luas Wilayah</p>
-                      <p className="text-xl font-bold text-primary-hover">
+                    <div className="bg-primary-lighter rounded-lg p-4 text-center">
+                      <p className="text-muted-foreground text-sm">
+                        Luas Wilayah
+                      </p>
+                      <p className="text-primary-hover text-xl font-bold">
                         1,234 km²
                       </p>
                     </div>
-                    <div className="rounded-lg bg-primary-lighter p-4 text-center">
-                      <p className="text-sm text-slate-500">Jumlah Penduduk</p>
-                      <p className="text-xl font-bold text-primary-hover">
+                    <div className="bg-primary-lighter rounded-lg p-4 text-center">
+                      <p className="text-muted-foreground text-sm">
+                        Jumlah Penduduk
+                      </p>
+                      <p className="text-primary-hover text-xl font-bold">
                         540,321 Jiwa
                       </p>
                     </div>
-                    <div className="rounded-lg bg-primary-lighter p-4 text-center">
-                      <p className="text-sm text-slate-500">Kecamatan</p>
-                      <p className="text-xl font-bold text-primary-hover">15</p>
+                    <div className="bg-primary-lighter rounded-lg p-4 text-center">
+                      <p className="text-muted-foreground text-sm">Kecamatan</p>
+                      <p className="text-primary-hover text-xl font-bold">15</p>
                     </div>
-                    <div className="rounded-lg bg-primary-lighter p-4 text-center">
-                      <p className="text-sm text-slate-500">Desa/Kelurahan</p>
-                      <p className="text-xl font-bold text-primary-hover">145</p>
+                    <div className="bg-primary-lighter rounded-lg p-4 text-center">
+                      <p className="text-muted-foreground text-sm">
+                        Desa/Kelurahan
+                      </p>
+                      <p className="text-primary-hover text-xl font-bold">
+                        145
+                      </p>
                     </div>
                   </div>
                 </CardContent>

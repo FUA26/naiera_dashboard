@@ -66,78 +66,78 @@ const categories: Category[] = [
     name: "Kesehatan",
     slug: "health",
     icon: HeartPulse,
-    color: "text-rose-600",
-    bgColor: "bg-rose-50",
+    color: "text-rose-600 dark:text-rose-400",
+    bgColor: "bg-rose-50 dark:bg-rose-900/30",
   },
   {
     name: "Pendidikan",
     slug: "education",
     icon: GraduationCap,
-    color: "text-blue-600",
-    bgColor: "bg-blue-50",
+    color: "text-blue-600 dark:text-blue-400",
+    bgColor: "bg-blue-50 dark:bg-blue-900/30",
   },
   {
     name: "Ekonomi",
     slug: "economy",
     icon: Briefcase,
-    color: "text-purple-600",
-    bgColor: "bg-purple-50",
+    color: "text-purple-600 dark:text-purple-400",
+    bgColor: "bg-purple-50 dark:bg-purple-900/30",
   },
   {
     name: "Ketenagakerjaan",
     slug: "manpower",
     icon: Users,
-    color: "text-amber-600",
-    bgColor: "bg-amber-50",
+    color: "text-amber-600 dark:text-amber-400",
+    bgColor: "bg-amber-50 dark:bg-amber-900/30",
   },
   {
     name: "Pariwisata",
     slug: "tourism",
     icon: Palmtree,
-    color: "text-cyan-600",
-    bgColor: "bg-cyan-50",
+    color: "text-cyan-600 dark:text-cyan-400",
+    bgColor: "bg-cyan-50 dark:bg-cyan-900/30",
   },
   {
     name: "Infrastruktur",
     slug: "infrastructure",
     icon: Building2,
-    color: "text-slate-600",
-    bgColor: "bg-slate-50",
+    color: "text-slate-600 dark:text-slate-400",
+    bgColor: "bg-slate-100 dark:bg-slate-800",
   },
   {
     name: "Sosial",
     slug: "social",
     icon: Heart,
-    color: "text-pink-600",
-    bgColor: "bg-pink-50",
+    color: "text-pink-600 dark:text-pink-400",
+    bgColor: "bg-pink-50 dark:bg-pink-900/30",
   },
   {
     name: "Lingkungan",
     slug: "environment",
     icon: TreePine,
-    color: "text-green-600",
-    bgColor: "bg-green-50",
+    color: "text-green-600 dark:text-green-400",
+    bgColor: "bg-green-50 dark:bg-green-900/30",
   },
   {
     name: "Pemerintahan",
     slug: "government",
     icon: Landmark,
-    color: "text-indigo-600",
-    bgColor: "bg-indigo-50",
+    color: "text-indigo-600 dark:text-indigo-400",
+    bgColor: "bg-indigo-50 dark:bg-indigo-900/30",
   },
   {
     name: "PPID",
     slug: "ppid",
     icon: FileSearch,
-    color: "text-teal-600",
-    bgColor: "bg-teal-50",
+    color: "text-teal-600 dark:text-teal-400",
+    bgColor: "bg-teal-50 dark:bg-teal-900/30",
   },
   {
     name: "Kebencanaan",
     slug: "disaster",
     icon: ShieldAlert,
-    color: "text-red-600",
-    bgColor: "bg-red-50",
+    color: "text-red-600 dark:text-red-400",
+    bgColor: "bg-red-50 dark:bg-red-900/30",
   },
 ];
 
@@ -439,7 +439,7 @@ export default function LayananPage() {
     <div className="min-h-screen">
       <TopBar />
       <Header />
-      <main className="bg-slate-50">
+      <main className="bg-muted">
         {/* Hero Section */}
         <section className="from-primary to-primary-hover bg-gradient-to-br py-16 text-white">
           <div className="container mx-auto max-w-6xl px-4">
@@ -475,7 +475,7 @@ export default function LayananPage() {
         </section>
 
         {/* Categories */}
-        <section className="border-b border-slate-200 bg-white py-6">
+        <section className="border-border bg-card border-b py-6">
           <div className="container mx-auto max-w-6xl px-4">
             <div className="flex flex-wrap items-center gap-3">
               <button
@@ -483,7 +483,7 @@ export default function LayananPage() {
                 className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${
                   selectedCategory === null
                     ? "bg-primary text-white shadow-md"
-                    : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+                    : "bg-muted text-foreground hover:bg-muted/80"
                 }`}
               >
                 Semua Layanan
@@ -497,7 +497,7 @@ export default function LayananPage() {
                     className={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-all ${
                       selectedCategory === cat.slug
                         ? "bg-primary text-white shadow-md"
-                        : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+                        : "bg-muted text-foreground hover:bg-muted/80"
                     }`}
                   >
                     <Icon size={16} />
@@ -513,7 +513,7 @@ export default function LayananPage() {
         <section className="py-12">
           <div className="container mx-auto max-w-6xl px-4">
             {/* Results Count */}
-            <p className="mb-6 text-sm text-slate-600">
+            <p className="text-muted-foreground mb-6 text-sm">
               Menampilkan {filteredServices.length} layanan
               {selectedCategory &&
                 ` dalam kategori "${categories.find((c) => c.slug === selectedCategory)?.name}"`}
@@ -528,7 +528,7 @@ export default function LayananPage() {
                     <Link
                       key={service.slug}
                       href={`/layanan/${service.slug}`}
-                      className="group hover:border-primary/30 relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                      className="group hover:border-primary/30 border-border bg-card relative overflow-hidden rounded-2xl border p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
                     >
                       {/* Badge */}
                       {service.badge && (
@@ -536,9 +536,9 @@ export default function LayananPage() {
                           <span
                             className={`rounded-full px-3 py-1 text-xs font-semibold ${
                               service.badge === "Baru"
-                                ? "bg-amber-100 text-amber-700"
+                                ? "bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400"
                                 : service.badge === "Penting"
-                                  ? "bg-red-100 text-red-700"
+                                  ? "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400"
                                   : "bg-primary-light text-primary-hover"
                             }`}
                           >
@@ -553,16 +553,16 @@ export default function LayananPage() {
                       </div>
 
                       {/* Content */}
-                      <h3 className="group-hover:text-primary mb-2 text-lg font-bold text-slate-800">
+                      <h3 className="group-hover:text-primary text-foreground mb-2 text-lg font-bold">
                         {service.name}
                       </h3>
-                      <p className="mb-4 text-sm text-slate-600">
+                      <p className="text-muted-foreground mb-4 text-sm">
                         {service.description}
                       </p>
 
                       {/* Category & Action */}
                       <div className="flex items-center justify-between">
-                        <span className="text-xs text-slate-500">
+                        <span className="text-muted-foreground text-xs">
                           {service.category}
                         </span>
                         <div className="text-primary flex items-center gap-1 text-sm font-medium opacity-0 transition-opacity group-hover:opacity-100">
@@ -576,13 +576,13 @@ export default function LayananPage() {
               </div>
             ) : (
               <div className="py-16 text-center">
-                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-slate-100">
-                  <Search className="h-8 w-8 text-slate-400" />
+                <div className="bg-muted mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full">
+                  <Search className="text-muted-foreground h-8 w-8" />
                 </div>
-                <h3 className="mb-2 text-lg font-semibold text-slate-800">
+                <h3 className="text-foreground mb-2 text-lg font-semibold">
                   Layanan tidak ditemukan
                 </h3>
-                <p className="text-slate-600">
+                <p className="text-muted-foreground">
                   Coba ubah kata kunci pencarian atau pilih kategori lain.
                 </p>
               </div>

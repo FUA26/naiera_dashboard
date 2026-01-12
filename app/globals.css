@@ -26,12 +26,12 @@
      BRAND COLORS
      ======================================== */
 
-  /* Primary - Main brand color (Red) */
-  --primary: oklch(0.577 0.245 27); /* red-500 */
-  --primary-hover: oklch(0.5 0.24 25); /* red-600 */
-  --primary-active: oklch(0.444 0.22 25); /* red-700 */
-  --primary-light: oklch(0.936 0.08 25); /* red-100 */
-  --primary-lighter: oklch(0.971 0.04 25); /* red-50 */
+  /* Primary - Main brand color (Blue) */
+  --primary: oklch(0.546 0.245 262); /* blue-600 */
+  --primary-hover: oklch(0.488 0.243 264); /* blue-700 */
+  --primary-active: oklch(0.424 0.199 265); /* blue-800 */
+  --primary-light: oklch(0.932 0.032 255); /* blue-100 */
+  --primary-lighter: oklch(0.97 0.014 254); /* blue-50 */
   --primary-foreground: oklch(1 0 0); /* white */
 
   /* Secondary - Supporting brand color (Slate/Gray) */
@@ -176,18 +176,18 @@
 
 .dark {
   /* Brand Colors - Dark Mode */
-  --primary: oklch(0.696 0.17 162); /* lighter for dark bg */
-  --primary-hover: oklch(0.6 0.18 162);
-  --primary-active: oklch(0.53 0.18 155);
-  --primary-light: oklch(0.25 0.05 155);
-  --primary-lighter: oklch(0.18 0.03 155);
+  --primary: oklch(0.707 0.165 254); /* blue-400 for dark mode */
+  --primary-hover: oklch(0.623 0.214 259); /* blue-500 */
+  --primary-active: oklch(0.546 0.245 262); /* blue-600 */
+  --primary-light: oklch(0.282 0.091 267); /* blue-900/40 */
+  --primary-lighter: oklch(0.208 0.042 265); /* blue-950/30 */
   --primary-foreground: oklch(0.145 0 0);
 
-  --secondary: oklch(0.708 0 0);
-  --secondary-hover: oklch(0.8 0 0);
-  --secondary-light: oklch(0.3 0.01 264);
-  --secondary-lighter: oklch(0.22 0.01 264);
-  --secondary-foreground: oklch(0.145 0 0);
+  --secondary: oklch(0.3 0.01 264); /* Darker background for dark mode */
+  --secondary-hover: oklch(0.35 0.01 264);
+  --secondary-light: oklch(0.25 0.01 264);
+  --secondary-lighter: oklch(0.2 0.01 264);
+  --secondary-foreground: oklch(0.95 0 0); /* Light text on dark bg */
 
   --accent: var(--primary-lighter);
   --accent-hover: var(--primary-light);
@@ -227,7 +227,7 @@
 
   --border: oklch(0.269 0.01 264);
   --input: oklch(0.269 0.01 264);
-  --ring: oklch(0.696 0.17 162);
+  --ring: oklch(0.707 0.165 254);
 
   /* Category Colors - Dark Mode */
   --category-government: oklch(0.7 0.18 250);

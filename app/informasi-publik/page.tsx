@@ -53,13 +53,13 @@ const categories: Category[] = [
     name: "Berita & Pengumuman",
     slug: "news",
     icon: Newspaper,
-    color: "text-blue-600",
+    color: "text-blue-600 dark:text-blue-400",
   },
   {
     name: "Agenda & Kegiatan",
     slug: "agenda",
     icon: Calendar,
-    color: "text-purple-600",
+    color: "text-purple-600 dark:text-purple-400",
   },
   {
     name: "Transparansi",
@@ -71,21 +71,31 @@ const categories: Category[] = [
     name: "Regulasi & Peraturan",
     slug: "regulations",
     icon: Scale,
-    color: "text-amber-600",
+    color: "text-amber-600 dark:text-amber-400",
   },
-  { name: "Pariwisata", slug: "tourism", icon: Map, color: "text-cyan-600" },
+  {
+    name: "Pariwisata",
+    slug: "tourism",
+    icon: Map,
+    color: "text-cyan-600 dark:text-cyan-400",
+  },
   {
     name: "Galeri & Media",
     slug: "gallery",
     icon: ImageIcon,
-    color: "text-pink-600",
+    color: "text-pink-600 dark:text-pink-400",
   },
-  { name: "PPID", slug: "ppid", icon: FileSearch, color: "text-teal-600" },
+  {
+    name: "PPID",
+    slug: "ppid",
+    icon: FileSearch,
+    color: "text-teal-600 dark:text-teal-400",
+  },
   {
     name: "Publikasi",
     slug: "publication",
     icon: BookOpen,
-    color: "text-indigo-600",
+    color: "text-indigo-600 dark:text-indigo-400",
   },
 ];
 
@@ -366,7 +376,7 @@ export default function InformasiPublikPage() {
     <div className="min-h-screen">
       <TopBar />
       <Header />
-      <main className="bg-slate-50">
+      <main className="bg-muted">
         {/* Hero Section */}
         <section className="bg-gradient-to-br from-blue-600 to-indigo-700 py-16 text-white">
           <div className="container mx-auto max-w-6xl px-4">
@@ -424,7 +434,7 @@ export default function InformasiPublikPage() {
         </section>
 
         {/* Categories */}
-        <section className="border-b border-slate-200 bg-white py-6">
+        <section className="border-border bg-card border-b py-6">
           <div className="container mx-auto max-w-6xl px-4">
             <div className="flex flex-wrap items-center gap-3">
               <button
@@ -432,7 +442,7 @@ export default function InformasiPublikPage() {
                 className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${
                   selectedCategory === null
                     ? "bg-blue-600 text-white shadow-md"
-                    : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+                    : "bg-muted text-foreground hover:bg-muted/80"
                 }`}
               >
                 Semua
@@ -446,7 +456,7 @@ export default function InformasiPublikPage() {
                     className={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-all ${
                       selectedCategory === cat.slug
                         ? "bg-blue-600 text-white shadow-md"
-                        : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+                        : "bg-muted text-foreground hover:bg-muted/80"
                     }`}
                   >
                     <Icon size={16} />
@@ -462,7 +472,7 @@ export default function InformasiPublikPage() {
         <section className="py-12">
           <div className="container mx-auto max-w-6xl px-4">
             {/* Results Count */}
-            <p className="mb-6 text-sm text-slate-600">
+            <p className="text-muted-foreground mb-6 text-sm">
               Menampilkan {filteredItems.length} informasi
               {selectedCategory &&
                 ` dalam kategori "${categories.find((c) => c.slug === selectedCategory)?.name}"`}
@@ -477,7 +487,7 @@ export default function InformasiPublikPage() {
                     <Link
                       key={item.slug}
                       href={`/informasi-publik/${item.slug}`}
-                      className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl"
+                      className="group border-border bg-card relative overflow-hidden rounded-2xl border p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl dark:hover:border-blue-800"
                     >
                       {/* Badge */}
                       {item.badge && (
@@ -485,12 +495,12 @@ export default function InformasiPublikPage() {
                           <span
                             className={`rounded-full px-3 py-1 text-xs font-semibold ${
                               item.badge === "Update"
-                                ? "bg-blue-100 text-blue-700"
+                                ? "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400"
                                 : item.badge === "Baru"
-                                  ? "bg-amber-100 text-amber-700"
+                                  ? "bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400"
                                   : item.badge === "Populer"
                                     ? "bg-primary-light text-primary-hover"
-                                    : "bg-purple-100 text-purple-700"
+                                    : "bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400"
                             }`}
                           >
                             {item.badge}
@@ -499,21 +509,21 @@ export default function InformasiPublikPage() {
                       )}
 
                       {/* Icon */}
-                      <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-blue-50 text-blue-600 transition-all group-hover:bg-blue-600 group-hover:text-white">
+                      <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-blue-50 text-blue-600 transition-all group-hover:bg-blue-600 group-hover:text-white dark:bg-blue-900/30 dark:text-blue-400">
                         <Icon size={28} />
                       </div>
 
                       {/* Content */}
-                      <h3 className="mb-2 text-lg font-bold text-slate-800 group-hover:text-blue-600">
+                      <h3 className="text-foreground mb-2 text-lg font-bold group-hover:text-blue-600 dark:group-hover:text-blue-400">
                         {item.name}
                       </h3>
-                      <p className="mb-4 text-sm text-slate-600">
+                      <p className="text-muted-foreground mb-4 text-sm">
                         {item.description}
                       </p>
 
                       {/* Category & Stats */}
                       <div className="flex items-center justify-between">
-                        <span className="text-xs text-slate-500">
+                        <span className="text-muted-foreground text-xs">
                           {item.category}
                         </span>
                         {item.stats && (
@@ -533,13 +543,13 @@ export default function InformasiPublikPage() {
               </div>
             ) : (
               <div className="py-16 text-center">
-                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-slate-100">
-                  <Search className="h-8 w-8 text-slate-400" />
+                <div className="bg-muted mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full">
+                  <Search className="text-muted-foreground h-8 w-8" />
                 </div>
-                <h3 className="mb-2 text-lg font-semibold text-slate-800">
+                <h3 className="text-foreground mb-2 text-lg font-semibold">
                   Informasi tidak ditemukan
                 </h3>
-                <p className="text-slate-600">
+                <p className="text-muted-foreground">
                   Coba ubah kata kunci pencarian atau pilih kategori lain.
                 </p>
               </div>
@@ -548,9 +558,9 @@ export default function InformasiPublikPage() {
         </section>
 
         {/* Quick Access Section */}
-        <section className="border-t border-slate-200 bg-white py-12">
+        <section className="border-border bg-card border-t py-12">
           <div className="container mx-auto max-w-6xl px-4">
-            <h2 className="mb-8 text-center text-2xl font-bold text-slate-800">
+            <h2 className="text-foreground mb-8 text-center text-2xl font-bold">
               Akses Cepat
             </h2>
             <div className="grid gap-4 md:grid-cols-4">
@@ -567,21 +577,24 @@ export default function InformasiPublikPage() {
                   title: "Permohonan PPID",
                   desc: "Ajukan permohonan informasi",
                   href: "/informasi-publik/permohonan-informasi",
-                  color: "bg-blue-50 text-blue-600",
+                  color:
+                    "bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400",
                 },
                 {
                   icon: BarChart3,
                   title: "Data Transparansi",
                   desc: "Lihat data APBD dan keuangan",
                   href: "/informasi-publik/apbd",
-                  color: "bg-purple-50 text-purple-600",
+                  color:
+                    "bg-purple-50 text-purple-600 dark:bg-purple-900/30 dark:text-purple-400",
                 },
                 {
                   icon: ExternalLink,
                   title: "Link Terkait",
                   desc: "Akses website terkait",
                   href: "#",
-                  color: "bg-amber-50 text-amber-600",
+                  color:
+                    "bg-amber-50 text-amber-600 dark:bg-amber-900/30 dark:text-amber-400",
                 },
               ].map((item) => {
                 const Icon = item.icon;
@@ -589,7 +602,7 @@ export default function InformasiPublikPage() {
                   <Link
                     key={item.title}
                     href={item.href}
-                    className="flex items-center gap-4 rounded-xl border border-slate-200 p-4 transition-all hover:border-blue-200 hover:shadow-md"
+                    className="border-border flex items-center gap-4 rounded-xl border p-4 transition-all hover:border-blue-200 hover:shadow-md dark:hover:border-blue-800"
                   >
                     <div
                       className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-lg ${item.color}`}
@@ -597,10 +610,12 @@ export default function InformasiPublikPage() {
                       <Icon size={24} />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-slate-800">
+                      <h3 className="text-foreground font-semibold">
                         {item.title}
                       </h3>
-                      <p className="text-sm text-slate-500">{item.desc}</p>
+                      <p className="text-muted-foreground text-sm">
+                        {item.desc}
+                      </p>
                     </div>
                   </Link>
                 );

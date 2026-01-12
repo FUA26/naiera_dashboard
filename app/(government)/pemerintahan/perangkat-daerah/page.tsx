@@ -102,7 +102,7 @@ export default function AgenciesPage() {
   return (
     <>
       <Header />
-      <main className="min-h-screen bg-slate-50">
+      <main className="bg-muted min-h-screen">
         {/* Hero Section */}
         <section className="bg-gradient-to-br from-blue-800 to-blue-900 py-16 text-white">
           <div className="container mx-auto px-4 text-center">
@@ -141,31 +141,31 @@ export default function AgenciesPage() {
             <TabsList className="mx-auto flex h-auto w-full max-w-3xl flex-wrap justify-center gap-2 bg-transparent">
               <TabsTrigger
                 value="all"
-                className="rounded-full border border-slate-200 bg-white px-4 py-2 data-[state=active]:bg-blue-600 data-[state=active]:text-white"
+                className="border-border bg-card rounded-full border px-4 py-2 data-[state=active]:bg-blue-600 data-[state=active]:text-white"
               >
                 {t("types.all")}
               </TabsTrigger>
               <TabsTrigger
                 value="dinas"
-                className="rounded-full border border-slate-200 bg-white px-4 py-2 data-[state=active]:bg-blue-600 data-[state=active]:text-white"
+                className="border-border bg-card rounded-full border px-4 py-2 data-[state=active]:bg-blue-600 data-[state=active]:text-white"
               >
                 {t("types.dinas")}
               </TabsTrigger>
               <TabsTrigger
                 value="badan"
-                className="rounded-full border border-slate-200 bg-white px-4 py-2 data-[state=active]:bg-blue-600 data-[state=active]:text-white"
+                className="border-border bg-card rounded-full border px-4 py-2 data-[state=active]:bg-blue-600 data-[state=active]:text-white"
               >
                 {t("types.badan")}
               </TabsTrigger>
               <TabsTrigger
                 value="kantor"
-                className="rounded-full border border-slate-200 bg-white px-4 py-2 data-[state=active]:bg-blue-600 data-[state=active]:text-white"
+                className="border-border bg-card rounded-full border px-4 py-2 data-[state=active]:bg-blue-600 data-[state=active]:text-white"
               >
                 {t("types.kantor")}
               </TabsTrigger>
               <TabsTrigger
                 value="kecamatan"
-                className="rounded-full border border-slate-200 bg-white px-4 py-2 data-[state=active]:bg-blue-600 data-[state=active]:text-white"
+                className="border-border bg-card rounded-full border px-4 py-2 data-[state=active]:bg-blue-600 data-[state=active]:text-white"
               >
                 {t("types.kecamatan")}
               </TabsTrigger>
@@ -178,30 +178,30 @@ export default function AgenciesPage() {
                 key={agency.id}
                 className="group overflow-hidden transition-all hover:-translate-y-1 hover:shadow-lg"
               >
-                <CardHeader className="border-b border-slate-50 bg-slate-50/50 pb-3">
+                <CardHeader className="border-muted bg-muted/50 border-b pb-3">
                   <div className="flex items-center justify-between">
                     <Badge
                       variant="outline"
-                      className="border-slate-200 bg-white text-slate-600 capitalize"
+                      className="border-border bg-card text-muted-foreground capitalize"
                     >
                       {agency.type}
                     </Badge>
-                    <Building2 className="h-5 w-5 text-slate-300" />
+                    <Building2 className="text-muted-foreground/50 h-5 w-5" />
                   </div>
-                  <CardTitle className="mt-2 text-lg text-slate-800">
+                  <CardTitle className="text-foreground mt-2 text-lg">
                     {agency.name}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="pt-4 pb-2">
-                  <div className="mb-2 flex items-start gap-2 text-sm text-slate-600">
-                    <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-slate-400" />
+                  <div className="text-muted-foreground mb-2 flex items-start gap-2 text-sm">
+                    <MapPin className="text-muted-foreground/70 mt-0.5 h-4 w-4 shrink-0" />
                     <span>{agency.address}</span>
                   </div>
                 </CardContent>
                 <CardFooter className="pt-2">
                   <Button
                     variant="ghost"
-                    className="w-full justify-between text-blue-600 transition-all group-hover:pl-4 hover:bg-blue-50 hover:text-blue-700"
+                    className="w-full justify-between text-blue-600 transition-all group-hover:pl-4 hover:bg-blue-50 hover:text-blue-700 dark:text-blue-400 dark:hover:bg-blue-900/30 dark:hover:text-blue-300"
                   >
                     {t("website")}
                     <ArrowRight className="h-4 w-4" />
@@ -211,7 +211,7 @@ export default function AgenciesPage() {
             ))}
 
             {filteredAgencies.length === 0 && (
-              <div className="col-span-full rounded-xl border border-dashed border-slate-100 bg-white py-12 text-center text-slate-500">
+              <div className="border-border bg-card text-muted-foreground col-span-full rounded-xl border border-dashed py-12 text-center">
                 Tidak ada perangkat daerah yang ditemukan.
               </div>
             )}

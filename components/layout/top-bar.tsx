@@ -43,11 +43,11 @@ export function TopBar() {
   }, [locale]);
 
   return (
-    <div className="h-10 bg-slate-900 text-slate-200">
+    <div className="bg-secondary text-secondary-foreground h-10">
       <div className="container mx-auto flex h-full items-center justify-between px-4 md:px-8">
         <div className="flex items-center gap-4">
           <span className="text-xs font-medium md:text-sm">{currentDate}</span>
-          <span className="hidden h-4 border-l border-slate-700 md:block" />
+          <span className="border-border hidden h-4 border-l md:block" />
           <span className="hidden text-sm md:block">
             {t(`greeting.${greetingKey}`)}, {t("citizen")}
           </span>
@@ -55,14 +55,14 @@ export function TopBar() {
         <div className="flex items-center gap-3 text-xs md:gap-4 md:text-sm">
           <a
             href="/kontak"
-            className="transition-colors duration-200 hover:text-white"
+            className="hover:text-primary transition-colors duration-200"
           >
             {t("contact")}
           </a>
-          <span className="text-slate-700">|</span>
+          <span className="text-muted-foreground">|</span>
           <a
             href="/faq"
-            className="transition-colors duration-200 hover:text-white"
+            className="hover:text-primary transition-colors duration-200"
           >
             {t("help")}
           </a>

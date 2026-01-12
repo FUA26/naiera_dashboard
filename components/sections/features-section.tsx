@@ -37,17 +37,17 @@ export function FeaturesSection() {
   ];
 
   return (
-    <section className="bg-white py-16 md:py-24" id="tentang">
+    <section className="bg-background py-16 md:py-24" id="tentang">
       <div className="container mx-auto max-w-7xl px-4">
         {/* Section Header */}
         <div className="mb-16 text-center">
           <span className="bg-primary-light text-primary mb-4 inline-block rounded-full px-4 py-2 text-sm font-semibold">
             {t("label")}
           </span>
-          <h2 className="mb-4 text-3xl font-bold text-slate-800 md:text-4xl">
+          <h2 className="text-foreground mb-4 text-3xl font-bold md:text-4xl">
             {t("title")}
           </h2>
-          <p className="mx-auto max-w-3xl text-base text-slate-600 md:text-lg">
+          <p className="text-muted-foreground mx-auto max-w-3xl text-base md:text-lg">
             {t("description")}
           </p>
         </div>
@@ -65,7 +65,7 @@ export function FeaturesSection() {
             <button className="bg-primary text-primary-foreground shadow-primary/30 hover:bg-primary-hover rounded-lg px-8 py-3 font-semibold shadow-lg transition-all duration-300 hover:scale-105">
               {t("ctaStart")}
             </button>
-            <button className="rounded-lg border-2 border-slate-300 bg-white px-8 py-3 font-semibold text-slate-700 transition-all duration-300 hover:bg-slate-50">
+            <button className="border-border bg-card text-foreground hover:bg-muted rounded-lg border-2 px-8 py-3 font-semibold transition-all duration-300">
               {t("ctaLearn")}
             </button>
           </div>
@@ -85,7 +85,7 @@ function FeatureCard({ feature, index }: FeatureCardProps) {
 
   return (
     <div
-      className="group animate-fade-in-up hover:border-primary/30 rounded-2xl border border-slate-100 p-6 transition-all duration-300 hover:shadow-xl"
+      className="group animate-fade-in-up hover:border-primary/30 border-border bg-card rounded-2xl border p-6 transition-all duration-300 hover:shadow-xl"
       style={{ animationDelay: `${index * 100}ms` }}
     >
       {/* Icon */}
@@ -94,12 +94,14 @@ function FeatureCard({ feature, index }: FeatureCardProps) {
       </div>
 
       {/* Title */}
-      <h3 className="group-hover:text-primary mb-3 text-xl font-bold text-slate-800 transition-colors">
+      <h3 className="group-hover:text-primary text-foreground mb-3 text-xl font-bold transition-colors">
         {feature.title}
       </h3>
 
       {/* Description */}
-      <p className="leading-relaxed text-slate-600">{feature.description}</p>
+      <p className="text-muted-foreground leading-relaxed">
+        {feature.description}
+      </p>
     </div>
   );
 }

@@ -857,7 +857,7 @@ export default function ServiceDetailPage({
     <div className="min-h-screen">
       <TopBar />
       <Header />
-      <main className="bg-slate-50">
+      <main className="bg-muted">
         {/* Hero Section */}
         <section className="from-primary to-primary-hover bg-gradient-to-br py-16 text-white">
           <div className="container mx-auto max-w-5xl px-4">
@@ -930,8 +930,8 @@ export default function ServiceDetailPage({
               <div className="space-y-8 lg:col-span-2">
                 {/* Requirements */}
                 {service.requirements.length > 0 && (
-                  <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-                    <h2 className="mb-4 flex items-center gap-2 text-xl font-bold text-slate-800">
+                  <div className="border-border bg-card rounded-2xl border p-6 shadow-sm">
+                    <h2 className="text-foreground mb-4 flex items-center gap-2 text-xl font-bold">
                       <FileText className="text-primary" size={24} />
                       Persyaratan
                     </h2>
@@ -942,7 +942,7 @@ export default function ServiceDetailPage({
                             className="text-primary mt-0.5 shrink-0"
                             size={20}
                           />
-                          <span className="text-slate-700">{req}</span>
+                          <span className="text-foreground">{req}</span>
                         </li>
                       ))}
                     </ul>
@@ -950,8 +950,8 @@ export default function ServiceDetailPage({
                 )}
 
                 {/* Process */}
-                <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-                  <h2 className="mb-4 flex items-center gap-2 text-xl font-bold text-slate-800">
+                <div className="border-border bg-card rounded-2xl border p-6 shadow-sm">
+                  <h2 className="text-foreground mb-4 flex items-center gap-2 text-xl font-bold">
                     <FileCheck className="text-primary" size={24} />
                     Alur Proses
                   </h2>
@@ -962,7 +962,7 @@ export default function ServiceDetailPage({
                           {index + 1}
                         </div>
                         <div className="flex-1 pt-1">
-                          <p className="text-slate-700">{step}</p>
+                          <p className="text-foreground">{step}</p>
                         </div>
                       </li>
                     ))}
@@ -971,8 +971,8 @@ export default function ServiceDetailPage({
 
                 {/* Download Forms */}
                 {service.downloadForms && service.downloadForms.length > 0 && (
-                  <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-                    <h2 className="mb-4 flex items-center gap-2 text-xl font-bold text-slate-800">
+                  <div className="border-border bg-card rounded-2xl border p-6 shadow-sm">
+                    <h2 className="text-foreground mb-4 flex items-center gap-2 text-xl font-bold">
                       <FileDown className="text-primary" size={24} />
                       Unduh Formulir
                     </h2>
@@ -981,15 +981,18 @@ export default function ServiceDetailPage({
                         <a
                           key={index}
                           href="#"
-                          className="hover:border-primary-light hover:bg-primary-lighter flex items-center justify-between rounded-lg border border-slate-200 p-4 transition-all"
+                          className="hover:border-primary-light hover:bg-primary-lighter border-border flex items-center justify-between rounded-lg border p-4 transition-all"
                         >
                           <div className="flex items-center gap-3">
                             <FileDown className="text-primary" size={20} />
-                            <span className="font-medium text-slate-700">
+                            <span className="text-foreground font-medium">
                               {form}
                             </span>
                           </div>
-                          <ArrowRight className="text-slate-400" size={20} />
+                          <ArrowRight
+                            className="text-muted-foreground"
+                            size={20}
+                          />
                         </a>
                       ))}
                     </div>
@@ -1000,24 +1003,24 @@ export default function ServiceDetailPage({
               {/* Right Column - Sidebar */}
               <div className="space-y-6">
                 {/* Quick Info */}
-                <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-                  <h3 className="mb-4 font-bold text-slate-800">
+                <div className="border-border bg-card rounded-2xl border p-6 shadow-sm">
+                  <h3 className="text-foreground mb-4 font-bold">
                     Informasi Cepat
                   </h3>
                   <div className="space-y-4">
                     <div>
-                      <div className="mb-1 flex items-center gap-2 text-sm font-medium text-slate-600">
+                      <div className="text-muted-foreground mb-1 flex items-center gap-2 text-sm font-medium">
                         <Clock size={16} />
                         Waktu Proses
                       </div>
-                      <p className="text-slate-800">{service.duration}</p>
+                      <p className="text-foreground">{service.duration}</p>
                     </div>
                     <div>
-                      <div className="mb-1 flex items-center gap-2 text-sm font-medium text-slate-600">
+                      <div className="text-muted-foreground mb-1 flex items-center gap-2 text-sm font-medium">
                         <CreditCard size={16} />
                         Biaya
                       </div>
-                      <p className="text-slate-800">{service.cost}</p>
+                      <p className="text-foreground">{service.cost}</p>
                     </div>
                   </div>
                 </div>
@@ -1031,12 +1034,12 @@ export default function ServiceDetailPage({
                 </Link>
 
                 {/* Alert */}
-                <div className="rounded-xl border border-amber-200 bg-amber-50 p-4">
-                  <div className="mb-2 flex items-center gap-2 font-semibold text-amber-800">
+                <div className="rounded-xl border border-amber-200 bg-amber-50 p-4 dark:border-amber-800 dark:bg-amber-900/30">
+                  <div className="mb-2 flex items-center gap-2 font-semibold text-amber-800 dark:text-amber-400">
                     <AlertCircle size={20} />
                     Perhatian
                   </div>
-                  <p className="text-sm text-amber-700">
+                  <p className="text-sm text-amber-700 dark:text-amber-300">
                     Pastikan semua persyaratan sudah lengkap sebelum mengajukan
                     layanan untuk mempercepat proses.
                   </p>
@@ -1045,8 +1048,8 @@ export default function ServiceDetailPage({
                 {/* Related Services */}
                 {service.relatedServices &&
                   service.relatedServices.length > 0 && (
-                    <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-                      <h3 className="mb-4 font-bold text-slate-800">
+                    <div className="border-border bg-card rounded-2xl border p-6 shadow-sm">
+                      <h3 className="text-foreground mb-4 font-bold">
                         Layanan Terkait
                       </h3>
                       <div className="space-y-2">
@@ -1060,18 +1063,18 @@ export default function ServiceDetailPage({
                             <Link
                               key={relatedSlug}
                               href={`/layanan/${relatedSlug}`}
-                              className="flex items-center gap-3 rounded-lg p-3 transition-colors hover:bg-slate-50"
+                              className="hover:bg-muted flex items-center gap-3 rounded-lg p-3 transition-colors"
                             >
                               <div className="bg-primary-lighter text-primary flex h-10 w-10 shrink-0 items-center justify-center rounded-lg">
                                 <RelatedIcon size={20} />
                               </div>
                               <div className="flex-1">
-                                <p className="text-sm font-medium text-slate-800">
+                                <p className="text-foreground text-sm font-medium">
                                   {relatedService.name}
                                 </p>
                               </div>
                               <ArrowRight
-                                className="text-slate-400"
+                                className="text-muted-foreground"
                                 size={16}
                               />
                             </Link>

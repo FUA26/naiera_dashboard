@@ -21,7 +21,7 @@ export default function DprdPage() {
   return (
     <>
       <Header />
-      <main className="min-h-screen bg-slate-50">
+      <main className="bg-muted min-h-screen">
         {/* Hero Section */}
         <section className="bg-gradient-to-br from-red-800 to-red-900 py-16 text-white">
           <div className="container mx-auto px-4 text-center">
@@ -62,7 +62,7 @@ export default function DprdPage() {
               <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {/* Leadership */}
                 <div className="col-span-full mb-4">
-                  <h3 className="mb-4 border-b pb-2 text-xl font-bold text-slate-800">
+                  <h3 className="border-border text-foreground mb-4 border-b pb-2 text-xl font-bold">
                     Pimpinan DPRD
                   </h3>
                   <div className="grid justify-center gap-6 md:grid-cols-3">
@@ -86,7 +86,7 @@ export default function DprdPage() {
 
                 {/* Members */}
                 <div className="col-span-full">
-                  <h3 className="mb-4 border-b pb-2 text-xl font-bold text-slate-800">
+                  <h3 className="border-border text-foreground mb-4 border-b pb-2 text-xl font-bold">
                     Anggota
                   </h3>
                   <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
@@ -152,9 +152,9 @@ export default function DprdPage() {
                     ].map((item, idx) => (
                       <div
                         key={idx}
-                        className="flex items-start gap-4 rounded-lg border border-slate-100 bg-slate-50 p-4"
+                        className="border-border bg-muted flex items-start gap-4 rounded-lg border p-4"
                       >
-                        <div className="flex h-14 w-14 shrink-0 flex-col items-center justify-center rounded-lg bg-red-100 text-red-700">
+                        <div className="flex h-14 w-14 shrink-0 flex-col items-center justify-center rounded-lg bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400">
                           <span className="text-xs font-bold uppercase">
                             {item.date.split(" ")[1]}
                           </span>
@@ -163,10 +163,10 @@ export default function DprdPage() {
                           </span>
                         </div>
                         <div>
-                          <h4 className="font-bold text-slate-800">
+                          <h4 className="text-foreground font-bold">
                             {item.title}
                           </h4>
-                          <div className="mt-1 flex gap-4 text-sm text-slate-500">
+                          <div className="text-muted-foreground mt-1 flex gap-4 text-sm">
                             <span className="flex items-center gap-1">
                               <Calendar className="h-3 w-3" /> {item.time}
                             </span>
@@ -200,15 +200,15 @@ function MemberCard({
 }) {
   return (
     <Card className="flex items-center gap-4 p-4 transition-shadow hover:shadow-md">
-      <Avatar className="h-12 w-12 border-2 border-slate-100">
-        <AvatarFallback className="bg-slate-200 text-slate-500">
+      <Avatar className="border-muted h-12 w-12 border-2">
+        <AvatarFallback className="bg-muted text-muted-foreground">
           <User className="h-6 w-6" />
         </AvatarFallback>
       </Avatar>
       <div>
-        <h4 className="text-sm font-bold text-slate-800">{name}</h4>
-        <p className="text-xs text-slate-500">{role}</p>
-        <Badge className="mt-1 border-0 bg-red-100 text-red-700 hover:bg-red-200">
+        <h4 className="text-foreground text-sm font-bold">{name}</h4>
+        <p className="text-muted-foreground text-xs">{role}</p>
+        <Badge className="mt-1 border-0 bg-red-100 text-red-700 hover:bg-red-200 dark:bg-red-900/30 dark:text-red-400 dark:hover:bg-red-900/50">
           {party}
         </Badge>
       </div>
@@ -220,11 +220,11 @@ function CommissionCard({ name, desc }: { name: string; desc: string }) {
   return (
     <Card className="transition-shadow hover:shadow-md">
       <CardHeader>
-        <CardTitle className="text-red-700">{name}</CardTitle>
+        <CardTitle className="text-red-700 dark:text-red-400">{name}</CardTitle>
         <CardDescription>{desc}</CardDescription>
       </CardHeader>
       <CardContent>
-        <p className="text-sm text-slate-600">
+        <p className="text-muted-foreground text-sm">
           Bertanggung jawab dalam pengawasan bidang terkait...
         </p>
       </CardContent>

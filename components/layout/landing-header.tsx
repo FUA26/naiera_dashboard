@@ -7,6 +7,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { LanguageSwitcher } from "@/components/shared/language-switcher";
 import { MegaMenu } from "@/components/layout/mega-menu";
+import { ThemeToggle } from "@/components/shared/theme-toggle";
 
 export function Header() {
   const t = useTranslations("Navigation");
@@ -27,10 +28,10 @@ export function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 h-20 border-b border-slate-200 bg-white/90 shadow-sm backdrop-blur-md">
+      <header className="border-border bg-background/90 sticky top-0 z-50 h-20 border-b shadow-sm backdrop-blur-md">
         <div className="container mx-auto flex h-full items-center justify-between px-4 md:px-8">
           <Link href="/" className="flex items-center gap-3">
-            <div className="relative flex h-10 w-10 items-center justify-center rounded-lg bg-white shadow-sm ring-1 ring-slate-200">
+            <div className="bg-card ring-border relative flex h-10 w-10 items-center justify-center rounded-lg shadow-sm ring-1">
               <Image
                 src="/naiera.png"
                 alt="Naiera Logo"
@@ -39,10 +40,10 @@ export function Header() {
               />
             </div>
             <div className="flex flex-col">
-              <span className="text-xl font-bold text-slate-800">
+              <span className="text-foreground text-xl font-bold">
                 {t("brandName")}
               </span>
-              <span className="hidden text-xs text-slate-500 sm:block">
+              <span className="text-muted-foreground hidden text-xs sm:block">
                 {t("brandSubtitle")}
               </span>
             </div>
@@ -55,6 +56,7 @@ export function Header() {
 
           {/* Action Section */}
           <div className="flex items-center gap-4">
+            <ThemeToggle />
             <LanguageSwitcher />
             <Link
               href="/login"
@@ -66,7 +68,7 @@ export function Header() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="hover:text-primary p-2 text-slate-600 transition-colors md:hidden"
+              className="hover:text-primary text-muted-foreground p-2 transition-colors md:hidden"
               aria-label="Toggle menu"
               aria-expanded={mobileMenuOpen}
             >
@@ -81,21 +83,21 @@ export function Header() {
         <div className="fixed inset-0 z-40 md:hidden">
           {/* Backdrop */}
           <div
-            className="absolute inset-0 bg-slate-900/50 backdrop-blur-sm"
+            className="bg-background/50 absolute inset-0 backdrop-blur-sm"
             onClick={() => setMobileMenuOpen(false)}
           />
 
           {/* Drawer */}
-          <div className="absolute top-0 right-0 h-full w-80 max-w-[85vw] bg-white shadow-2xl">
+          <div className="bg-card absolute top-0 right-0 h-full w-80 max-w-[85vw] shadow-2xl">
             <div className="flex h-full flex-col">
               {/* Drawer Header */}
-              <div className="flex items-center justify-between border-b border-slate-200 p-6">
-                <span className="text-lg font-bold text-slate-800">
+              <div className="border-border flex items-center justify-between border-b p-6">
+                <span className="text-foreground text-lg font-bold">
                   {t("menu")}
                 </span>
                 <button
                   onClick={() => setMobileMenuOpen(false)}
-                  className="hover:text-primary p-2 text-slate-600 transition-colors"
+                  className="hover:text-primary text-muted-foreground p-2 transition-colors"
                   aria-label="Close menu"
                 >
                   <X size={24} />
@@ -109,10 +111,10 @@ export function Header() {
                     key={item.label}
                     href={item.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className={`block border-b border-slate-100 px-6 py-4 font-medium transition-colors ${
+                    className={`border-border block border-b px-6 py-4 font-medium transition-colors ${
                       item.active
                         ? "bg-primary-lighter text-primary"
-                        : "hover:text-primary text-slate-600 hover:bg-slate-50"
+                        : "hover:text-primary text-foreground hover:bg-accent"
                     }`}
                   >
                     {item.label}
@@ -121,7 +123,7 @@ export function Header() {
               </nav>
 
               {/* Drawer Footer */}
-              <div className="border-t border-slate-200 p-6">
+              <div className="border-border border-t p-6">
                 <Link
                   href="/login"
                   className="bg-primary text-primary-foreground shadow-primary/30 hover:bg-primary-hover block w-full rounded-lg px-6 py-3 text-center font-medium shadow-lg transition-all"

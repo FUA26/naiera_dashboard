@@ -81,7 +81,7 @@ export default function DistrictsPage() {
   return (
     <>
       <Header />
-      <main className="min-h-screen bg-slate-50">
+      <main className="bg-muted min-h-screen">
         {/* Hero Section */}
         <section className="bg-gradient-to-br from-teal-700 to-teal-800 py-16 text-white">
           <div className="container mx-auto px-4 text-center">
@@ -104,7 +104,7 @@ export default function DistrictsPage() {
             <Card className="flex h-[500px] w-full flex-col lg:h-full lg:w-1/3">
               <div className="border-b p-4">
                 <div className="relative">
-                  <Search className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-slate-400" />
+                  <Search className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
                   <Input
                     placeholder={t("searchPlaceholder")}
                     className="pl-9"
@@ -121,19 +121,19 @@ export default function DistrictsPage() {
                       onClick={() => setSelectedId(district.id)}
                       className={`flex w-full items-center justify-between rounded-lg px-4 py-3 text-sm font-medium transition-colors ${
                         selectedId === district.id
-                          ? "bg-teal-50 text-teal-700"
-                          : "text-slate-600 hover:bg-slate-50"
+                          ? "bg-teal-50 text-teal-700 dark:bg-teal-900/30 dark:text-teal-400"
+                          : "text-muted-foreground hover:bg-muted"
                       }`}
                     >
                       <div className="flex items-center gap-3">
                         <div
-                          className={`flex h-8 w-8 items-center justify-center rounded-full ${selectedId === district.id ? "bg-teal-200 text-teal-700" : "bg-slate-100 text-slate-500"}`}
+                          className={`flex h-8 w-8 items-center justify-center rounded-full ${selectedId === district.id ? "bg-teal-200 text-teal-700 dark:bg-teal-800 dark:text-teal-400" : "bg-muted text-muted-foreground"}`}
                         >
                           <Map className="h-4 w-4" />
                         </div>
                         <div className="text-left">
                           <span className="block">{district.name}</span>
-                          <span className="text-xs font-normal text-slate-400">
+                          <span className="text-muted-foreground text-xs font-normal">
                             {t("villageCount", {
                               count: district.villages.length,
                             })}
@@ -146,7 +146,7 @@ export default function DistrictsPage() {
                     </button>
                   ))}
                   {filteredDistricts.length === 0 && (
-                    <div className="p-4 text-center text-sm text-slate-500">
+                    <div className="text-muted-foreground p-4 text-center text-sm">
                       Tidak ditemukan.
                     </div>
                   )}
@@ -156,23 +156,23 @@ export default function DistrictsPage() {
 
             {/* Detail View */}
             <Card className="flex h-full w-full flex-col overflow-hidden lg:w-2/3">
-              <CardHeader className="border-b bg-slate-50">
+              <CardHeader className="bg-muted border-b">
                 <div className="flex items-center justify-between">
                   <div>
-                    <CardTitle className="text-2xl text-slate-800">
+                    <CardTitle className="text-foreground text-2xl">
                       {selectedDistrict.name}
                     </CardTitle>
-                    <p className="mt-1 text-sm text-slate-500">
+                    <p className="text-muted-foreground mt-1 text-sm">
                       {selectedDistrict.address}
                     </p>
                   </div>
                   <div className="hidden text-right sm:block">
-                    <p className="mb-1 text-xs font-bold tracking-wider text-slate-400 uppercase">
+                    <p className="text-muted-foreground mb-1 text-xs font-bold tracking-wider uppercase">
                       {t("camat")}
                     </p>
                     <div className="flex items-center justify-end gap-2">
                       <User className="h-4 w-4 text-teal-600" />
-                      <span className="font-medium text-slate-700">
+                      <span className="text-foreground font-medium">
                         {selectedDistrict.camat}
                       </span>
                     </div>
@@ -182,7 +182,7 @@ export default function DistrictsPage() {
               <CardContent className="flex-1 p-0">
                 <ScrollArea className="h-full">
                   <div className="p-6">
-                    <h3 className="mb-4 flex items-center gap-2 font-semibold text-slate-800">
+                    <h3 className="text-foreground mb-4 flex items-center gap-2 font-semibold">
                       <Home className="h-4 w-4 text-teal-600" />
                       {t("villages")}
                     </h3>
@@ -190,17 +190,17 @@ export default function DistrictsPage() {
                       {selectedDistrict.villages.map((village, idx) => (
                         <div
                           key={idx}
-                          className="flex items-center gap-3 rounded-lg border border-slate-200 bg-white p-3 transition-colors hover:border-teal-200"
+                          className="border-border bg-card flex items-center gap-3 rounded-lg border p-3 transition-colors hover:border-teal-200 dark:hover:border-teal-800"
                         >
                           <div className="h-2 w-2 rounded-full bg-teal-400" />
-                          <span className="text-slate-700">{village}</span>
+                          <span className="text-foreground">{village}</span>
                         </div>
                       ))}
                     </div>
 
                     <Separator className="my-6" />
 
-                    <div className="text-sm text-slate-500">
+                    <div className="text-muted-foreground text-sm">
                       <p className="mb-2">Informasi tambahan:</p>
                       <p>
                         Kecamatan {selectedDistrict.name} merupakan salah satu

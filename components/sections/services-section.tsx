@@ -478,17 +478,17 @@ export function ServicesSection() {
           ?.services || [];
 
   return (
-    <section className="bg-slate-50 py-16 md:py-20" id="layanan">
+    <section className="bg-muted py-16 md:py-20" id="layanan">
       <div className="container mx-auto max-w-7xl px-4">
         {/* Section Header */}
         <div className="mb-12 text-center">
           <span className="bg-primary-light text-primary mb-4 inline-block rounded-full px-4 py-2 text-sm font-semibold">
             {t("label")}
           </span>
-          <h2 className="mb-3 text-3xl font-bold text-slate-800 md:text-4xl">
+          <h2 className="text-foreground mb-3 text-3xl font-bold md:text-4xl">
             {t("title")}
           </h2>
-          <p className="mx-auto max-w-2xl text-base text-slate-600 md:text-lg">
+          <p className="text-muted-foreground mx-auto max-w-2xl text-base md:text-lg">
             {t("subtitle")}
           </p>
         </div>
@@ -501,7 +501,7 @@ export function ServicesSection() {
               className={`rounded-full px-5 py-2.5 font-medium transition-all duration-300 ${
                 selectedCategory === null
                   ? "bg-primary text-primary-foreground shadow-primary/30 shadow-lg"
-                  : "hover:border-primary/30 hover:text-primary border border-slate-200 bg-white text-slate-700"
+                  : "hover:border-primary/30 hover:text-primary border-border bg-card text-foreground border"
               }`}
             >
               {t("allServices")}
@@ -515,7 +515,7 @@ export function ServicesSection() {
                   className={`inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-sm font-medium transition-all duration-300 ${
                     selectedCategory === category.name
                       ? "bg-primary text-primary-foreground shadow-primary/30 shadow-lg"
-                      : "hover:border-primary/30 hover:text-primary border border-slate-200 bg-white text-slate-700"
+                      : "hover:border-primary/30 hover:text-primary border-border bg-card text-foreground border"
                   }`}
                 >
                   <CategoryIcon size={16} />
@@ -560,12 +560,12 @@ export function ServicesSection() {
         {/* Empty State */}
         {displayedServices.length === 0 && (
           <div className="py-12 text-center">
-            <p className="text-lg text-slate-500">{t("empty")}</p>
+            <p className="text-muted-foreground text-lg">{t("empty")}</p>
           </div>
         )}
 
         {/* Stats Summary */}
-        <div className="mt-16 rounded-2xl border border-slate-100 bg-white p-8 shadow-sm">
+        <div className="border-border bg-card mt-16 rounded-2xl border p-8 shadow-sm">
           <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
             <StatCard
               number="100+"
@@ -624,7 +624,7 @@ function ServiceCard({ service, index, tAccess }: ServiceCardProps) {
   return (
     <a
       href={service.href}
-      className="group animate-fade-in-up hover:border-primary/30 relative overflow-hidden rounded-2xl border border-slate-100 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+      className="group animate-fade-in-up hover:border-primary/30 border-border bg-card relative overflow-hidden rounded-2xl border p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
       style={{ animationDelay: `${index * 50}ms` }}
       aria-label={`Layanan ${service.name} - ${service.description}`}
     >
@@ -637,9 +637,9 @@ function ServiceCard({ service, index, tAccess }: ServiceCardProps) {
           <span
             className={`rounded-full px-3 py-1 text-xs font-semibold shadow-sm ${
               service.badge === "Baru" || service.badge === "New"
-                ? "border border-amber-200 bg-amber-100 text-amber-700"
+                ? "border border-amber-200 bg-amber-100 text-amber-700 dark:border-amber-800 dark:bg-amber-900/30 dark:text-amber-400"
                 : service.badge === "Penting" || service.badge === "Important"
-                  ? "border border-red-200 bg-red-100 text-red-700"
+                  ? "border border-red-200 bg-red-100 text-red-700 dark:border-red-800 dark:bg-red-900/30 dark:text-red-400"
                   : "border-primary/30 bg-primary-lighter text-primary border"
             }`}
           >
@@ -656,18 +656,18 @@ function ServiceCard({ service, index, tAccess }: ServiceCardProps) {
         </div>
 
         {/* Service Name */}
-        <h3 className="group-hover:text-primary mb-2 text-lg font-bold text-slate-800 transition-colors">
+        <h3 className="group-hover:text-primary text-foreground mb-2 text-lg font-bold transition-colors">
           {service.name}
         </h3>
 
         {/* Description */}
-        <p className="mb-4 text-sm leading-relaxed text-slate-600">
+        <p className="text-muted-foreground mb-4 text-sm leading-relaxed">
           {service.description}
         </p>
 
         {/* Stats & Action */}
-        <div className="flex items-center justify-between border-t border-slate-100 pt-3">
-          <span className="text-xs font-medium text-slate-500">
+        <div className="border-border flex items-center justify-between border-t pt-3">
+          <span className="text-muted-foreground text-xs font-medium">
             {service.stats}
           </span>
           <div className="text-primary flex items-center gap-1 text-sm font-semibold opacity-0 transition-opacity group-hover:opacity-100">
@@ -693,9 +693,11 @@ interface StatCardProps {
 function StatCard({ number, label, icon: Icon, color }: StatCardProps) {
   const colorClasses = {
     primary: "text-primary bg-primary-lighter",
-    blue: "text-blue-600 bg-blue-50",
-    purple: "text-purple-600 bg-purple-50",
-    amber: "text-amber-600 bg-amber-50",
+    blue: "text-blue-600 bg-blue-50 dark:text-blue-400 dark:bg-blue-900/30",
+    purple:
+      "text-purple-600 bg-purple-50 dark:text-purple-400 dark:bg-purple-900/30",
+    amber:
+      "text-amber-600 bg-amber-50 dark:text-amber-400 dark:bg-amber-900/30",
   };
 
   const selectedColor =
@@ -708,10 +710,10 @@ function StatCard({ number, label, icon: Icon, color }: StatCardProps) {
       >
         <Icon size={24} strokeWidth={2} />
       </div>
-      <div className="mb-1 text-2xl font-bold text-slate-800 md:text-3xl">
+      <div className="text-foreground mb-1 text-2xl font-bold md:text-3xl">
         {number}
       </div>
-      <div className="text-sm text-slate-600">{label}</div>
+      <div className="text-muted-foreground text-sm">{label}</div>
     </div>
   );
 }

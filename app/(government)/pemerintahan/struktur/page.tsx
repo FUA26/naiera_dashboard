@@ -13,7 +13,7 @@ export default function StructurePage() {
   return (
     <>
       <Header />
-      <main className="min-h-screen bg-slate-50">
+      <main className="bg-muted min-h-screen">
         {/* Hero Section */}
         <section className="bg-gradient-to-br from-indigo-800 to-indigo-900 py-16 text-white">
           <div className="container mx-auto px-4 text-center">
@@ -31,12 +31,12 @@ export default function StructurePage() {
 
         {/* Structure Chart */}
         <section className="container mx-auto px-4 py-12">
-          <div className="relative flex min-h-[600px] justify-center overflow-x-auto rounded-xl bg-white p-12 shadow-sm">
+          <div className="bg-card relative flex min-h-[600px] justify-center overflow-x-auto rounded-xl p-12 shadow-sm">
             <div className="flex min-w-[800px] flex-col items-center space-y-12">
               {/* Level 1: Bupati & Wakil */}
               <div className="relative flex gap-16">
                 {/* Connection Line */}
-                <div className="absolute top-1/2 right-1/4 left-1/4 -z-10 h-0.5 bg-slate-300" />
+                <div className="bg-border absolute top-1/2 right-1/4 left-1/4 -z-10 h-0.5" />
 
                 <OrgNode
                   role={t("regent")}
@@ -53,7 +53,7 @@ export default function StructurePage() {
               </div>
 
               {/* Vertical Line */}
-              <div className="h-12 w-0.5 bg-slate-300" />
+              <div className="bg-border h-12 w-0.5" />
 
               {/* Level 2: Sekda */}
               <OrgNode
@@ -64,8 +64,8 @@ export default function StructurePage() {
 
               {/* Vertical Line splits */}
               <div className="relative flex w-full justify-center">
-                <div className="absolute top-0 right-1/4 left-1/4 h-0.5 bg-slate-300" />
-                <div className="absolute top-0 bottom-full left-1/2 h-8 w-0.5 -translate-y-full bg-slate-300" />
+                <div className="bg-border absolute top-0 right-1/4 left-1/4 h-0.5" />
+                <div className="bg-border absolute top-0 bottom-full left-1/2 h-8 w-0.5 -translate-y-full" />
 
                 {/* This part needs clearer CSS drawing for tree lines, simplifying for now */}
               </div>
@@ -73,7 +73,7 @@ export default function StructurePage() {
               {/* Level 3: Asisten & Staf Ahli */}
               <div className="grid w-full max-w-4xl grid-cols-2 gap-12">
                 <div className="flex flex-col items-center gap-4">
-                  <div className="h-8 w-0.5 bg-slate-300" />
+                  <div className="bg-border h-8 w-0.5" />
                   <OrgNode
                     role={t("assistants")}
                     name="3 Asisten"
@@ -81,7 +81,7 @@ export default function StructurePage() {
                   />
                 </div>
                 <div className="flex flex-col items-center gap-4">
-                  <div className="h-8 w-0.5 bg-slate-300" />
+                  <div className="bg-border h-8 w-0.5" />
                   <OrgNode
                     role={t("staff")}
                     name="5 Staf Ahli"
@@ -91,24 +91,24 @@ export default function StructurePage() {
               </div>
 
               {/* Level 4: Agencies */}
-              <div className="mt-8 w-full border-t border-slate-200 pt-8">
-                <p className="mb-6 text-center font-medium text-slate-500">
+              <div className="border-border mt-8 w-full border-t pt-8">
+                <p className="text-muted-foreground mb-6 text-center font-medium">
                   Perangkat Daerah (Dinas, Badan, Kantor, Kecamatan)
                 </p>
-                <div className="grid-cols-2md:grid-cols-4 grid gap-4 text-center text-sm text-slate-600">
-                  <div className="rounded-lg border bg-slate-50 p-3">
+                <div className="grid-cols-2md:grid-cols-4 text-muted-foreground grid gap-4 text-center text-sm">
+                  <div className="border-border bg-muted rounded-lg border p-3">
                     Dinas Pendidikan
                   </div>
-                  <div className="rounded-lg border bg-slate-50 p-3">
+                  <div className="border-border bg-muted rounded-lg border p-3">
                     Dinas Kesehatan
                   </div>
-                  <div className="rounded-lg border bg-slate-50 p-3">
+                  <div className="border-border bg-muted rounded-lg border p-3">
                     Bappeda
                   </div>
-                  <div className="rounded-lg border bg-slate-50 p-3">
+                  <div className="border-border bg-muted rounded-lg border p-3">
                     Inspektorat
                   </div>
-                  <div className="col-span-full mt-2 text-xs text-slate-400">
+                  <div className="text-muted-foreground/70 col-span-full mt-2 text-xs">
                     ... dan 30+ perangkat daerah lainnya
                   </div>
                 </div>
@@ -134,17 +134,17 @@ function OrgNode({
   color?: string;
 }) {
   return (
-    <Card className="z-10 w-64 overflow-hidden border-slate-200 transition-shadow hover:shadow-md">
+    <Card className="border-border z-10 w-64 overflow-hidden transition-shadow hover:shadow-md">
       <div className={`h-2 ${color}`} />
       <CardContent className="flex flex-col items-center p-6 text-center">
-        <Avatar className="mb-4 h-20 w-20 border-4 border-slate-50">
+        <Avatar className="border-muted mb-4 h-20 w-20 border-4">
           {image ? <AvatarImage src={image} alt={name} /> : null}
-          <AvatarFallback className="bg-slate-100 text-slate-400">
+          <AvatarFallback className="bg-muted text-muted-foreground">
             <User className="h-8 w-8" />
           </AvatarFallback>
         </Avatar>
-        <h3 className="mb-1 font-bold text-slate-800">{name}</h3>
-        <p className="text-sm font-medium text-slate-500">{role}</p>
+        <h3 className="text-foreground mb-1 font-bold">{name}</h3>
+        <p className="text-muted-foreground text-sm font-medium">{role}</p>
       </CardContent>
     </Card>
   );
