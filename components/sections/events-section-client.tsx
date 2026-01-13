@@ -7,10 +7,12 @@ import {
   ArrowRight,
   ChevronLeft,
   ChevronRight,
+  Clock,
 } from "lucide-react";
 import { useState, useMemo } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import type { Event } from "@/lib/events-data";
+import Link from "next/link";
 
 interface EventsSectionClientProps {
   events: Event[];
@@ -22,6 +24,7 @@ export function EventsSectionClient({ events }: EventsSectionClientProps) {
   const dateLocale = locale === "id" ? "id-ID" : "en-US";
 
   const [currentMonth, setCurrentMonth] = useState(new Date(2026, 0)); // January 2026
+  const [selectedDate, setSelectedDate] = useState<number | null>(null);
 
   const formatDate = (dateStr: string) => {
     return new Intl.DateTimeFormat(dateLocale, {
@@ -46,6 +49,18 @@ export function EventsSectionClient({ events }: EventsSectionClientProps) {
     year: "numeric",
   });
 
+  // Get events for a specific date
+  const getEventsForDate = (day: number) => {
+    return events.filter(event => {
+      const eventDate = new Date(event.date);
+      return (
+        eventDate.getDate() === day &&
+        eventDate.getMonth() === currentMonth.getMonth() &&
+        eventDate.getFullYear() === currentMonth.getFullYear()
+      );
+    });
+  };
+
   // Extract event days for the current month
   const eventDays = useMemo(() => {
     return events
@@ -56,6 +71,11 @@ export function EventsSectionClient({ events }: EventsSectionClientProps) {
       })
       .map(event => new Date(event.date).getDate());
   }, [events, currentMonth]);
+
+  // Get events for selected date
+  const selectedDateEvents = selectedDate !== null
+    ? getEventsForDate(selectedDate)
+    : [];
 
   // Generate localized weekday names
   const weekDays = useMemo(() => {
@@ -69,6 +89,16 @@ export function EventsSectionClient({ events }: EventsSectionClientProps) {
     }
     return days;
   }, [dateLocale]);
+
+  // Get current date for comparison
+  const today = new Date();
+  const isToday = (day: number) => {
+    return (
+      day === today.getDate() &&
+      currentMonth.getMonth() === today.getMonth() &&
+      currentMonth.getFullYear() === today.getFullYear()
+    );
+  };
 
   return (
     <section className="bg-muted py-16 md:py-20" id="acara">
@@ -110,7 +140,7 @@ export function EventsSectionClient({ events }: EventsSectionClientProps) {
 
                 {/* Featured Event Content */}
                 <div className="p-6">
-                  <h3 className="mb-4 text-2xl leading-tight font-bold text-slate-800">
+                  <h3 className="mb-4 text-2xl leading-tight font-bold text-foreground">
                     {events[0].title}
                   </h3>
 
@@ -132,7 +162,7 @@ export function EventsSectionClient({ events }: EventsSectionClientProps) {
                   </div>
 
                   <div className="border-border flex items-center justify-between border-t pt-4">
-                    <a
+                    <Link
                       href={`/informasi-publik/agenda-kegiatan/${events[0].slug}`}
                       className="group text-primary hover:text-primary-hover inline-flex items-center gap-2 font-semibold"
                     >
@@ -141,7 +171,7 @@ export function EventsSectionClient({ events }: EventsSectionClientProps) {
                         size={18}
                         className="transition-transform group-hover:translate-x-1"
                       />
-                    </a>
+                    </Link>
                     <button className="bg-primary text-primary-foreground hover:bg-primary-hover rounded-lg px-6 py-2 font-medium transition-colors">
                       {t("representative")}
                     </button>
@@ -150,14 +180,70 @@ export function EventsSectionClient({ events }: EventsSectionClientProps) {
               </div>
             )}
 
+            {/* Events for Selected Date */}
+            {selectedDate !== null && selectedDateEvents.length > 0 && (
+              <div className="border-border bg-card rounded-2xl border p-6 shadow-sm">
+                <h4 className="text-foreground mb-4 text-lg font-bold">
+                  Acara pada {selectedDate} {monthName}
+                </h4>
+                <div className="space-y-4">
+                  {selectedDateEvents.map((event) => (
+                    <Link
+                      key={event.id}
+                      href={`/informasi-publik/agenda-kegiatan/${event.slug}`}
+                      className="group hover:border-primary/30 border-border flex gap-4 rounded-xl border p-4 transition-all duration-300 hover:shadow-lg"
+                    >
+                      <div className="from-muted to-muted-foreground/20 relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-lg bg-gradient-to-br">
+                        <div className="from-primary/40 absolute inset-0 bg-gradient-to-br to-blue-500/40" />
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <Calendar size={28} className="text-muted-foreground" />
+                        </div>
+                      </div>
+
+                      <div className="min-w-0 flex-1">
+                        <h5 className="group-hover:text-primary text-foreground mb-2 line-clamp-2 font-bold transition-colors">
+                          {event.title}
+                        </h5>
+                        <div className="text-muted-foreground mb-1 flex items-center gap-2 text-sm">
+                          <Clock size={14} />
+                          <span>{event.time}</span>
+                        </div>
+                        <div className="text-muted-foreground flex items-center gap-2 text-sm">
+                          <MapPin size={14} />
+                          <span className="line-clamp-1">{event.location}</span>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center">
+                        <span className={`rounded-lg px-3 py-1 text-xs font-medium whitespace-nowrap ${
+                          event.status === "upcoming"
+                            ? "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400"
+                            : event.status === "ongoing"
+                              ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400"
+                              : "bg-gray-100 text-gray-700 dark:bg-gray-900/30 dark:text-gray-400"
+                        }`}>
+                          {event.status === "upcoming" ? "Akan Datang" :
+                           event.status === "ongoing" ? "Sedang Berlangsung" :
+                           "Selesai"}
+                        </span>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+
             {/* Event List */}
             <div className="space-y-4">
               <h4 className="text-foreground mb-4 text-lg font-bold">
-                {t("finished")}
+                {selectedDate !== null ? "Acara Lainnya" : t("finished")}
               </h4>
 
-              {events.slice(1, 4).map((event) => (
-                <a
+              {(selectedDate !== null
+                ? events.slice(1, 4).filter(e => !selectedDateEvents.includes(e))
+                : events.slice(1, 4)
+              ).map((event) => (
+                <Link
                   key={event.id}
                   href={`/informasi-publik/agenda-kegiatan/${event.slug}`}
                   className="group hover:border-primary/30 border-border bg-card flex gap-4 rounded-xl border p-4 transition-all duration-300 hover:shadow-lg"
@@ -195,13 +281,13 @@ export function EventsSectionClient({ events }: EventsSectionClientProps) {
                        t("upcoming")}
                     </span>
                   </div>
-                </a>
+                </Link>
               ))}
 
               {/* View All Link */}
               <div className="pt-4 text-center">
-                <a
-                  href="#semua-agenda"
+                <Link
+                  href="/informasi-publik/agenda-kegiatan"
                   className="group text-primary hover:text-primary-hover inline-flex items-center gap-2 font-semibold transition-colors"
                 >
                   {t("viewOthers")}
@@ -209,7 +295,7 @@ export function EventsSectionClient({ events }: EventsSectionClientProps) {
                     size={18}
                     className="transition-transform group-hover:translate-x-1"
                   />
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -224,28 +310,30 @@ export function EventsSectionClient({ events }: EventsSectionClientProps) {
               {/* Month Navigation */}
               <div className="mb-6 flex items-center justify-between">
                 <button
-                  onClick={() =>
+                  onClick={() => {
                     setCurrentMonth(
                       new Date(
                         currentMonth.getFullYear(),
                         currentMonth.getMonth() - 1
                       )
-                    )
-                  }
+                    );
+                    setSelectedDate(null);
+                  }}
                   className="hover:bg-muted rounded-lg p-2 transition-colors"
                 >
                   <ChevronLeft size={20} className="text-muted-foreground" />
                 </button>
                 <div className="text-foreground font-semibold">{monthName}</div>
                 <button
-                  onClick={() =>
+                  onClick={() => {
                     setCurrentMonth(
                       new Date(
                         currentMonth.getFullYear(),
                         currentMonth.getMonth() + 1
                       )
-                    )
-                  }
+                    );
+                    setSelectedDate(null);
+                  }}
                   className="hover:bg-muted rounded-lg p-2 transition-colors"
                 >
                   <ChevronRight size={20} className="text-muted-foreground" />
@@ -277,17 +365,26 @@ export function EventsSectionClient({ events }: EventsSectionClientProps) {
                   {Array.from({ length: daysInMonth }).map((_, i) => {
                     const day = i + 1;
                     const hasEvent = eventDays.includes(day);
-                    const isToday = day === 13; // Example: 13th is today
+                    const isSelected = selectedDate === day;
+                    const isTodayDay = isToday(day);
 
                     return (
                       <button
                         key={day}
+                        onClick={() => {
+                          if (hasEvent) {
+                            setSelectedDate(isSelected ? null : day);
+                          }
+                        }}
+                        disabled={!hasEvent}
                         className={`flex aspect-square items-center justify-center rounded-lg text-sm transition-all duration-200 ${
-                          isToday
+                          isTodayDay && !isSelected
                             ? "bg-primary text-primary-foreground font-bold"
-                            : hasEvent
-                              ? "bg-primary-lighter text-primary hover:bg-primary-light font-semibold"
-                              : "text-foreground hover:bg-muted"
+                            : isSelected
+                              ? "bg-blue-600 text-white font-bold"
+                              : hasEvent
+                                ? "bg-primary-lighter text-primary hover:bg-primary-light font-semibold cursor-pointer"
+                                : "text-foreground/30 cursor-not-allowed"
                         }`}
                       >
                         {day}
@@ -309,29 +406,50 @@ export function EventsSectionClient({ events }: EventsSectionClientProps) {
                     {t("calHasEvent")}
                   </span>
                 </div>
+                {selectedDate !== null && (
+                  <div className="flex items-center gap-2 text-sm">
+                    <div className="bg-blue-600 h-4 w-4 rounded" />
+                    <span className="text-muted-foreground">Tanggal Dipilih</span>
+                  </div>
+                )}
               </div>
+
+              {/* Selected Date Info */}
+              {selectedDate !== null && selectedDateEvents.length === 0 && (
+                <div className="bg-muted mt-6 rounded-xl p-4 text-center">
+                  <Calendar
+                    size={40}
+                    className="text-muted-foreground/50 mx-auto mb-2"
+                  />
+                  <p className="text-muted-foreground text-sm">
+                    Tidak ada acara pada tanggal ini
+                  </p>
+                </div>
+              )}
 
               {/* No Event State */}
-              <div className="bg-muted mt-6 rounded-xl p-4 text-center">
-                <Calendar
-                  size={40}
-                  className="text-muted-foreground/50 mx-auto mb-2"
-                />
-                <p className="text-muted-foreground text-sm">
-                  {t("calNoEvent")}
-                </p>
-                <p className="text-muted-foreground/70 text-xs">
-                  {t("calNoEventDesc")}
-                </p>
-              </div>
+              {selectedDate === null && (
+                <div className="bg-muted mt-6 rounded-xl p-4 text-center">
+                  <Calendar
+                    size={40}
+                    className="text-muted-foreground/50 mx-auto mb-2"
+                  />
+                  <p className="text-muted-foreground text-sm">
+                    {t("calNoEvent")}
+                  </p>
+                  <p className="text-muted-foreground/70 text-xs">
+                    {t("calNoEventDesc")}
+                  </p>
+                </div>
+              )}
 
               {/* View Full Calendar */}
-              <a
-                href="#kalender-lengkap"
+              <Link
+                href="/informasi-publik/agenda-kegiatan"
                 className="text-primary hover:text-primary-hover mt-4 block text-center text-sm font-semibold"
               >
                 {t("viewOthers")} →
-              </a>
+              </Link>
             </div>
           </div>
         </div>
