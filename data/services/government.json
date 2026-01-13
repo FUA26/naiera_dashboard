@@ -5,7 +5,9 @@
     "name": "Surat RT/RW",
     "description": "Pengurusan surat keterangan RT/RW",
     "categoryId": "government",
-    "stats": "4.2k"
+    "stats": "4.2k",
+    "showInMenu": true,
+    "order": 1
   },
   {
     "slug": "dana-desa",
@@ -13,6 +15,8 @@
     "name": "Dana Desa",
     "description": "Transparansi penggunaan dana desa",
     "categoryId": "government",
-    "stats": "120"
+    "stats": "120",
+    "showInMenu": false,
+    "order": 2
   }
 ]

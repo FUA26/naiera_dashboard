@@ -6,7 +6,9 @@
     "description": "Pendaftaran dan informasi BPJS",
     "categoryId": "health",
     "badge": "Populer",
-    "stats": "8.5k"
+    "stats": "8.5k",
+    "showInMenu": true,
+    "order": 1
   },
   {
     "slug": "puskesmas",
@@ -14,7 +16,9 @@
     "name": "Layanan Puskesmas",
     "description": "Informasi layanan kesehatan Puskesmas",
     "categoryId": "health",
-    "stats": "4.2k"
+    "stats": "4.2k",
+    "showInMenu": true,
+    "order": 2
   },
   {
     "slug": "posyandu",
@@ -22,6 +26,8 @@
     "name": "Posyandu",
     "description": "Layanan kesehatan ibu dan anak",
     "categoryId": "health",
-    "stats": "2.3k"
+    "stats": "2.3k",
+    "showInMenu": false,
+    "order": 3
   }
 ]

@@ -5,7 +5,9 @@
     "name": "Bantuan Sosial",
     "description": "Program bantuan sosial masyarakat",
     "categoryId": "social",
-    "stats": "3.5k"
+    "stats": "3.5k",
+    "showInMenu": true,
+    "order": 1
   },
   {
     "slug": "dtks",
@@ -13,6 +15,8 @@
     "name": "DTKS",
     "description": "Data Terpadu Kesejahteraan Sosial",
     "categoryId": "social",
-    "stats": "2.8k"
+    "stats": "2.8k",
+    "showInMenu": false,
+    "order": 2
   }
 ]

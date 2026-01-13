@@ -5,7 +5,9 @@
     "name": "Bank Sampah",
     "description": "Program pengelolaan sampah",
     "categoryId": "environment",
-    "stats": "890"
+    "stats": "890",
+    "showInMenu": true,
+    "order": 1
   },
   {
     "slug": "aduan-lingkungan",
@@ -13,6 +15,8 @@
     "name": "Aduan Lingkungan",
     "description": "Laporan masalah lingkungan",
     "categoryId": "environment",
-    "stats": "450"
+    "stats": "450",
+    "showInMenu": false,
+    "order": 2
   }
 ]

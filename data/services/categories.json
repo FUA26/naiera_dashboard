@@ -5,7 +5,9 @@
     "icon": "Users",
     "color": "primary",
     "bgColor": "bg-primary-lighter",
-    "slug": "population"
+    "slug": "population",
+    "showInMenu": true,
+    "order": 1
   },
   {
     "id": "health",
@@ -13,7 +15,9 @@
     "icon": "HeartPulse",
     "color": "rose",
     "bgColor": "bg-rose-50 dark:bg-rose-900/30",
-    "slug": "health"
+    "slug": "health",
+    "showInMenu": true,
+    "order": 2
   },
   {
     "id": "education",
@@ -21,7 +25,9 @@
     "icon": "GraduationCap",
     "color": "blue",
     "bgColor": "bg-blue-50 dark:bg-blue-900/30",
-    "slug": "education"
+    "slug": "education",
+    "showInMenu": true,
+    "order": 3
   },
   {
     "id": "economy",
@@ -29,7 +35,9 @@
     "icon": "Briefcase",
     "color": "purple",
     "bgColor": "bg-purple-50 dark:bg-purple-900/30",
-    "slug": "economy"
+    "slug": "economy",
+    "showInMenu": true,
+    "order": 4
   },
   {
     "id": "manpower",
@@ -37,7 +45,9 @@
     "icon": "Users",
     "color": "amber",
     "bgColor": "bg-amber-50 dark:bg-amber-900/30",
-    "slug": "manpower"
+    "slug": "manpower",
+    "showInMenu": true,
+    "order": 5
   },
   {
     "id": "tourism",
@@ -45,7 +55,9 @@
     "icon": "Palmtree",
     "color": "cyan",
     "bgColor": "bg-cyan-50 dark:bg-cyan-900/30",
-    "slug": "tourism"
+    "slug": "tourism",
+    "showInMenu": true,
+    "order": 6
   },
   {
     "id": "infrastructure",
@@ -53,7 +65,9 @@
     "icon": "Building2",
     "color": "slate",
     "bgColor": "bg-slate-100 dark:bg-slate-800",
-    "slug": "infrastructure"
+    "slug": "infrastructure",
+    "showInMenu": false,
+    "order": 7
   },
   {
     "id": "social",
@@ -61,7 +75,9 @@
     "icon": "Heart",
     "color": "pink",
     "bgColor": "bg-pink-50 dark:bg-pink-900/30",
-    "slug": "social"
+    "slug": "social",
+    "showInMenu": false,
+    "order": 8
   },
   {
     "id": "environment",
@@ -69,7 +85,9 @@
     "icon": "TreePine",
     "color": "green",
     "bgColor": "bg-green-50 dark:bg-green-900/30",
-    "slug": "environment"
+    "slug": "environment",
+    "showInMenu": true,
+    "order": 9
   },
   {
     "id": "government",
@@ -77,7 +95,9 @@
     "icon": "Landmark",
     "color": "indigo",
     "bgColor": "bg-indigo-50 dark:bg-indigo-900/30",
-    "slug": "government"
+    "slug": "government",
+    "showInMenu": false,
+    "order": 10
   },
   {
     "id": "ppid",
@@ -85,7 +105,9 @@
     "icon": "FileSearch",
     "color": "teal",
     "bgColor": "bg-teal-50 dark:bg-teal-900/30",
-    "slug": "ppid"
+    "slug": "ppid",
+    "showInMenu": true,
+    "order": 11
   },
   {
     "id": "disaster",
@@ -93,7 +115,9 @@
     "icon": "ShieldAlert",
     "color": "red",
     "bgColor": "bg-red-50 dark:bg-red-900/30",
-    "slug": "disaster"
+    "slug": "disaster",
+    "showInMenu": true,
+    "order": 12
   },
   {
     "id": "multisector",
@@ -101,6 +125,8 @@
     "icon": "Building2",
     "color": "violet",
     "bgColor": "bg-violet-50 dark:bg-violet-900/30",
-    "slug": "multisector"
+    "slug": "multisector",
+    "showInMenu": false,
+    "order": 13
   }
 ]

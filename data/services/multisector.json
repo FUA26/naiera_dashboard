@@ -5,7 +5,9 @@
     "name": "Layanan Terpadu",
     "description": "Layanan publik terintegrasi satu pintu",
     "categoryId": "multisector",
-    "stats": "2.1k"
+    "stats": "2.1k",
+    "showInMenu": true,
+    "order": 1
   },
   {
     "slug": "pengaduan-masyarakat",
@@ -14,6 +16,8 @@
     "description": "Saluran pengaduan dan aspirasi warga",
     "categoryId": "multisector",
     "badge": "Populer",
-    "stats": "3.4k"
+    "stats": "3.4k",
+    "showInMenu": true,
+    "order": 2
   }
 ]

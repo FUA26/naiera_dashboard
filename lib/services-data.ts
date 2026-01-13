@@ -9,6 +9,8 @@ export interface ServiceCategory {
   color: string;
   bgColor: string;
   slug: string;
+  showInMenu: boolean;
+  order: number;
 }
 
 export interface Service {
@@ -19,6 +21,8 @@ export interface Service {
   categoryId: string;
   badge?: string;
   stats?: string;
+  showInMenu?: boolean;
+  order?: number;
 }
 
 export interface ServiceWithCategory extends Service {
@@ -36,9 +40,53 @@ export async function getServiceCategories(): Promise<ServiceCategory[]> {
     const categoriesPath = path.join(SERVICES_DATA_PATH, 'categories.json');
     const fileContents = fs.readFileSync(categoriesPath, 'utf8');
     const categories: ServiceCategory[] = JSON.parse(fileContents);
-    return categories;
+    return categories.sort((a, b) => a.order - b.order);
   } catch (error) {
     console.error('Error loading service categories:', error);
+    return [];
+  }
+}
+
+/**
+ * Fetch only visible service categories (showInMenu: true)
+ * This is used for mega menu display
+ */
+export async function getVisibleServiceCategories(): Promise<ServiceCategory[]> {
+  try {
+    const categories = await getServiceCategories();
+    return categories
+      .filter(cat => cat.showInMenu)
+      .sort((a, b) => a.order - b.order);
+  } catch (error) {
+    console.error('Error loading visible service categories:', error);
+    return [];
+  }
+}
+
+/**
+ * Fetch visible service categories with their services
+ * This is used for mega menu display
+ */
+export async function getVisibleServicesGroupedByCategory(): Promise<Array<ServiceCategory & { services: Service[] }>> {
+  try {
+    const categories = await getVisibleServiceCategories();
+    const categoriesWithServices = await Promise.all(
+      categories.map(async (category) => {
+        const services = await getServicesByCategory(category.id);
+        // Filter services that should be shown in menu
+        const visibleServices = services
+          .filter(service => service.showInMenu !== false)
+          .sort((a, b) => (a.order || 999) - (b.order || 999));
+
+        return {
+          ...category,
+          services: visibleServices
+        };
+      })
+    );
+    return categoriesWithServices;
+  } catch (error) {
+    console.error('Error loading visible services grouped by category:', error);
     return [];
   }
 }
@@ -51,7 +99,7 @@ export async function getServicesByCategory(categoryId: string): Promise<Service
     const servicesPath = path.join(SERVICES_DATA_PATH, `${categoryId}.json`);
     const fileContents = fs.readFileSync(servicesPath, 'utf8');
     const services: Service[] = JSON.parse(fileContents);
-    return services;
+    return services.sort((a, b) => (a.order || 999) - (b.order || 999));
   } catch (error) {
     console.error(`Error loading services for category ${categoryId}:`, error);
     return [];
@@ -75,7 +123,7 @@ export async function getAllServices(): Promise<ServiceWithCategory[]> {
       allServices.push(...servicesWithCategory);
     }
 
-    return allServices;
+    return allServices.sort((a, b) => (a.order || 999) - (b.order || 999));
   } catch (error) {
     console.error('Error loading all services:', error);
     return [];
@@ -83,7 +131,7 @@ export async function getAllServices(): Promise<ServiceWithCategory[]> {
 }
 
 /**
- * Get service categories with their services
+ * Get service categories with their services (all categories)
  */
 export async function getServicesGroupedByCategory(): Promise<Array<ServiceCategory & { services: Service[] }>> {
   try {

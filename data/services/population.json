@@ -6,7 +6,9 @@
     "description": "Pembuatan dan perpanjangan KTP Elektronik",
     "categoryId": "population",
     "badge": "Populer",
-    "stats": "5.2k"
+    "stats": "5.2k",
+    "showInMenu": true,
+    "order": 1
   },
   {
     "slug": "kk",
@@ -14,7 +16,9 @@
     "name": "Kartu Keluarga",
     "description": "Pembuatan dan perubahan Kartu Keluarga",
     "categoryId": "population",
-    "stats": "3.8k"
+    "stats": "3.8k",
+    "showInMenu": true,
+    "order": 2
   },
   {
     "slug": "akta-kelahiran",
@@ -22,7 +26,9 @@
     "name": "Akta Kelahiran",
     "description": "Pembuatan Akta Kelahiran",
     "categoryId": "population",
-    "stats": "2.1k"
+    "stats": "2.1k",
+    "showInMenu": true,
+    "order": 3
   },
   {
     "slug": "pindah-domisili",
@@ -30,6 +36,8 @@
     "name": "Pindah Domisili",
     "description": "Pengurusan surat pindah domisili",
     "categoryId": "population",
-    "stats": "890"
+    "stats": "890",
+    "showInMenu": true,
+    "order": 4
   }
 ]

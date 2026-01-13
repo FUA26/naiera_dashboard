@@ -5,7 +5,9 @@
     "name": "Informasi Publik",
     "description": "Permohonan informasi publik (PPID)",
     "categoryId": "ppid",
-    "stats": "320"
+    "stats": "320",
+    "showInMenu": true,
+    "order": 1
   },
   {
     "slug": "dokumen-publik",
@@ -13,6 +15,8 @@
     "name": "Dokumen Publik",
     "description": "Akses dokumen dan regulasi",
     "categoryId": "ppid",
-    "stats": "1.5k"
+    "stats": "1.5k",
+    "showInMenu": true,
+    "order": 2
   }
 ]

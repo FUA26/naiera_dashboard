@@ -6,7 +6,9 @@
     "description": "Penerimaan Peserta Didik Baru",
     "categoryId": "education",
     "badge": "Baru",
-    "stats": "3.7k"
+    "stats": "3.7k",
+    "showInMenu": true,
+    "order": 1
   },
   {
     "slug": "beasiswa",
@@ -14,7 +16,9 @@
     "name": "Beasiswa",
     "description": "Informasi dan pendaftaran beasiswa",
     "categoryId": "education",
-    "stats": "1.5k"
+    "stats": "1.5k",
+    "showInMenu": true,
+    "order": 2
   },
   {
     "slug": "surat-keterangan-sekolah",
@@ -22,6 +26,8 @@
     "name": "Surat Keterangan Sekolah",
     "description": "Pengurusan surat keterangan",
     "categoryId": "education",
-    "stats": "2.8k"
+    "stats": "2.8k",
+    "showInMenu": false,
+    "order": 3
   }
 ]

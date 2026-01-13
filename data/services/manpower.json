@@ -5,7 +5,9 @@
     "name": "Kartu Kuning",
     "description": "Kartu pencari kerja (AK/I)",
     "categoryId": "manpower",
-    "stats": "2.4k"
+    "stats": "2.4k",
+    "showInMenu": true,
+    "order": 1
   },
   {
     "slug": "job-fair",
@@ -14,7 +16,9 @@
     "description": "Informasi bursa kerja",
     "categoryId": "manpower",
     "badge": "Populer",
-    "stats": "1.8k"
+    "stats": "1.8k",
+    "showInMenu": true,
+    "order": 2
   },
   {
     "slug": "pelatihan-kerja",
@@ -22,6 +26,8 @@
     "name": "Pelatihan Kerja",
     "description": "Program pelatihan dan sertifikasi",
     "categoryId": "manpower",
-    "stats": "950"
+    "stats": "950",
+    "showInMenu": false,
+    "order": 3
   }
 ]

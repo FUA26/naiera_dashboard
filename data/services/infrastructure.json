@@ -5,7 +5,9 @@
     "name": "IMB (PBG)",
     "description": "Izin Mendirikan Bangunan",
     "categoryId": "infrastructure",
-    "stats": "780"
+    "stats": "780",
+    "showInMenu": true,
+    "order": 1
   },
   {
     "slug": "aduan-infrastruktur",
@@ -14,7 +16,9 @@
     "description": "Laporan kerusakan fasilitas umum",
     "categoryId": "infrastructure",
     "badge": "Populer",
-    "stats": "1.2k"
+    "stats": "1.2k",
+    "showInMenu": true,
+    "order": 2
   },
   {
     "slug": "transportasi-umum",
@@ -22,6 +26,8 @@
     "name": "Transportasi Umum",
     "description": "Info rute dan jadwal transportasi",
     "categoryId": "infrastructure",
-    "stats": "5.6k"
+    "stats": "5.6k",
+    "showInMenu": false,
+    "order": 3
   }
 ]

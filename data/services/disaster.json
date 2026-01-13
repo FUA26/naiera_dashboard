@@ -6,7 +6,9 @@
     "description": "Nomor darurat dan tanggap bencana",
     "categoryId": "disaster",
     "badge": "Penting",
-    "stats": "24/7"
+    "stats": "24/7",
+    "showInMenu": true,
+    "order": 1
   },
   {
     "slug": "info-bencana",
@@ -14,6 +16,8 @@
     "name": "Info Bencana",
     "description": "Peringatan dini dan info cuaca",
     "categoryId": "disaster",
-    "stats": "Real-time"
+    "stats": "Real-time",
+    "showInMenu": true,
+    "order": 2
   }
 ]
