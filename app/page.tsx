@@ -4,8 +4,8 @@ import { Footer } from "@/components/layout/landing-footer";
 import { HeroSection } from "@/components/sections/hero-section";
 import { ServicesSection } from "@/components/sections/services-section-server";
 import { FeaturesSection } from "@/components/sections/features-section";
-import { NewsSection } from "@/components/sections/news-section";
-import { EventsSection } from "@/components/sections/events-section";
+import { NewsSection } from "@/components/sections/news-section-server";
+import { EventsSection } from "@/components/sections/events-section-server";
 import { AppDownloadSection } from "@/components/sections/app-download-section";
 
 export default function Page() {
