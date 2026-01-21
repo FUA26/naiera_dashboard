@@ -46,7 +46,7 @@ import {
   DataTableViewOptions,
   DensityState,
   FacetedFilterOption,
-} from "@/components/data-table";
+} from "@/components/dashboard/data-table";
 import { TaskWithRelations } from "./columns";
 import { ExportDropdown } from "./components/export-dropdown";
 

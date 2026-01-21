@@ -6,7 +6,7 @@ import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { LanguageSwitcher } from "@/components/shared/language-switcher";
-import { MegaMenuClient } from "@/components/layout/mega-menu-client";
+import { MegaMenuClient } from "@/components/landing/layout/mega-menu-client";
 import { ThemeToggle } from "@/components/shared/theme-toggle";
 import type { ServiceCategory } from "@/lib/services-data";
 

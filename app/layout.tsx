@@ -6,7 +6,6 @@ import { getLocale, getMessages } from "next-intl/server";
 
 import "./globals.css";
 import { Providers } from "@/components/providers";
-import { AccessibilityWidget } from "@/components/shared/accessibility-widget";
 
 const fontSans = Inter({
   subsets: ["latin"],
@@ -15,17 +14,6 @@ const fontSans = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Super App Naiera - Layanan Digital Kabupaten Naiera",
-  description:
-    "Akses ratusan layanan pemerintahan dengan mudah, cepat, dan aman dalam satu platform digital. Kabupaten Naiera menuju digitalisasi pelayanan publik.",
-  keywords: [
-    "super app",
-    "naiera",
-    "kabupaten naiera",
-    "layanan digital",
-    "pemerintahan",
-    "e-government",
-  ],
   icons: {
     icon: "/naiera.png",
     apple: "/naiera.png",
@@ -46,7 +34,6 @@ export default async function RootLayout({
         <NextIntlClientProvider messages={messages}>
           <Providers>
             <NuqsAdapter>{children}</NuqsAdapter>
-            <AccessibilityWidget />
           </Providers>
         </NextIntlClientProvider>
       </body>

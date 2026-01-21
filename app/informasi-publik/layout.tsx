@@ -1,7 +1,14 @@
-import { TopBar } from "@/components/layout/top-bar";
-import { Header } from "@/components/layout/landing-header";
-import { Footer } from "@/components/layout/landing-footer";
+import type { Metadata } from "next";
+import { TopBar } from "@/components/landing/layout/top-bar";
+import { Header } from "@/components/landing/layout/landing-header";
+import { Footer } from "@/components/landing/layout/landing-footer";
+import { AccessibilityWidget } from "@/components/shared/accessibility-widget";
 import { getVisibleServicesGroupedByCategory } from "@/lib/services-data";
+
+export const metadata: Metadata = {
+  title: "Informasi Publik - Super App Naiera",
+  description: "Akses informasi publik Kabupaten Naiera secara transparan dan akuntabel",
+};
 
 export default async function InformasiPublikLayout({
   children,
@@ -17,6 +24,7 @@ export default async function InformasiPublikLayout({
       <Header servicesByCategory={servicesByCategory} />
       {children}
       <Footer />
+      <AccessibilityWidget />
     </div>
   );
 }

@@ -6,7 +6,7 @@ import {
   DataTableActionBar,
   type DensityState,
   type DataTableInstance,
-} from "@/components/data-table";
+} from "@/components/dashboard/data-table";
 import { useDataTable } from "@/hooks/use-data-table";
 import { columns, type TaskWithRelations } from "./columns";
 import { TasksToolbar } from "./tasks-toolbar";

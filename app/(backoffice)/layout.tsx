@@ -1,11 +1,21 @@
-import { AppSidebar } from "@/components/layout/app-sidebar";
-import { HeaderNotifications } from "@/components/layout/header-notifications";
-import { HeaderUser } from "@/components/layout/header-user";
+import type { Metadata } from "next";
+import { AppSidebar } from "@/components/dashboard/layout/app-sidebar";
+import { HeaderNotifications } from "@/components/dashboard/layout/header-notifications";
+import { HeaderUser } from "@/components/dashboard/layout/header-user";
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
+
+export const metadata: Metadata = {
+  title: "Backoffice - Super App Naiera",
+  description: "Dashboard internal untuk pengelolaan layanan digital Kabupaten Naiera",
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 export default function BackofficeLayout({
   children,

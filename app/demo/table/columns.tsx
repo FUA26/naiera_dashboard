@@ -13,7 +13,7 @@ import {
   IconArrowUp,
 } from "@tabler/icons-react";
 import { Task, Project, User } from "@/db/schema";
-import { DataTableColumnHeader } from "@/components/data-table";
+import { DataTableColumnHeader } from "@/components/dashboard/data-table";
 import { TaskActions } from "./components/task-actions";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 

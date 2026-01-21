@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { FileQuestion, ArrowLeft, Home, Calendar } from "lucide-react";
-import { TopBar } from "@/components/layout/top-bar";
-import { Header } from "@/components/layout/landing-header";
-import { Footer } from "@/components/layout/landing-footer";
+import { TopBar } from "@/components/landing/layout/top-bar";
+import { Header } from "@/components/landing/layout/landing-header";
+import { Footer } from "@/components/landing/layout/landing-footer";
 
 export default function NotFound() {
   return (
